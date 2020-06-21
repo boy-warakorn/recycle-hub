@@ -1,16 +1,29 @@
-# csc_integrate_project
+# Recycle Hub
 
-A new Flutter project.
+Recycle hub is a shop application for a person that want to sell/buy recycle waste (android based for now).
 
-## Getting Started
+# Authors
 
-This project is a starting point for a Flutter application.
+- Mr. Warakorn Chantranupong
+- Mr. Pongsakorn Chatpram
+- Mrs. Aticha
 
-A few resources to get you started if this is your first Flutter project:
+# Features
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- Lorem ipsum text
+- Lorem ipsum text
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Setup
+
+Run this command to start editing this application.
+
+```sh
+flutter run
+```
+
+If you have problem feel free to contact me.
+
+# Contact
+
+> Facebook: Warakorn Chantranupong
+> Email: warakorn.bboy@mail.kmutt.ac.th
