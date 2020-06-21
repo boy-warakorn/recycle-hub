@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Recycle Hub'),
     );
   }
 }
@@ -72,6 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+        backgroundColor: Color(0xff655c56),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -91,23 +92,56 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+            Container(
+              color: Color(0xff655c56),
+              height: 150,
+              child: Center(
+                child: Text(
+                  '0xff655c56',
+                  style: TextStyle(fontSize: 30),
+                ),
+              ),
+              width: double.infinity,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            Container(
+              color: Color(0xffeffcef),
+              height: 150,
+              child: Center(
+                child: Text(
+                  '0xffeffcef',
+                  style: TextStyle(fontSize: 30),
+                ),
+              ),
+              width: double.infinity,
             ),
+            Container(
+              color: Color(0xffccedd2),
+              height: 150,
+              child: Center(
+                child: Text(
+                  '0xffccedd2',
+                  style: TextStyle(fontSize: 30),
+                ),
+              ),
+              width: double.infinity,
+            ),
+            Container(
+              color: Color(0xff94d3ac),
+              height: 150,
+              child: Center(
+                child: Text(
+                  '0xff94d3ac',
+                  style: TextStyle(fontSize: 30),
+                ),
+              ),
+              width: double.infinity,
+            ),
+           
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
