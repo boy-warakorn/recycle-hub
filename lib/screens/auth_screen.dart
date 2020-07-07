@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import '../widgets/labelTextField.dart';
 
-class Home extends StatelessWidget {
+import './register_screen.dart';
+import '../widgets/labelTextField.dart';
+import '../widgets/button.dart';
+
+class AuthScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
@@ -21,7 +24,7 @@ class Home extends StatelessWidget {
             children: <Widget>[
               Container(
                 margin: EdgeInsets.only(
-                    top: deviceHeight / 5, bottom: 50, left: 20, right: 20),
+                    top: deviceHeight / 6, bottom: 50, left: 20, right: 20),
                 child: Image(
                   image: AssetImage('assets/images/logo.png'),
                 ),
@@ -57,7 +60,8 @@ class Home extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          print('adads');
+                          Navigator.of(context)
+                              .pushNamed(RegisterScreen.routeName);
                         },
                         child: Center(
                           child: Text(
@@ -75,21 +79,11 @@ class Home extends StatelessWidget {
                         height: 20,
                       ),
                       Center(
-                        child: RaisedButton(
-                          onPressed: () {},
-                          color: Color(0xFFEFFCEF),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          padding: EdgeInsets.symmetric(
-                              vertical: 15, horizontal: 35),
-                          child: Text(
-                            'Sign In',
-                            style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF655C56)),
-                          ),
+                        child: Button(
+                          text: 'Sign In',
+                          buttonColor: Color(0xFFEFFCEF),
+                          textColor: Color(0xFF655C56),
+                          onClick: () {},
                         ),
                       )
                     ],

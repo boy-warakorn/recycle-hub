@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import './screens/home.dart';
+
+import 'screens/auth_screen.dart';
+import 'screens/register_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +22,10 @@ class _MyAppState extends State<MyApp> {
         fontFamily: 'Montserrat',
         primarySwatch: Colors.blue,
       ),
-      home: Home(),
+      home: AuthScreen(),
+      routes: {
+        RegisterScreen.routeName: (ctx) => RegisterScreen(),
+      },
     );
   }
 }
