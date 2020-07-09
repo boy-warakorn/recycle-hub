@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'screens/auth_screen.dart';
-import 'screens/register_screen.dart';
+import 'screens/auth/auth_screen.dart';
+import 'screens/auth/register_screen.dart';
+import 'screens/choose_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,6 +27,7 @@ class _MyAppState extends State<MyApp> {
       home: AuthScreen(),
       routes: {
         RegisterScreen.routeName: (ctx) => RegisterScreen(),
+        ChooseScreen.routeName: (ctx) => ChooseScreen(),
       },
     );
   }

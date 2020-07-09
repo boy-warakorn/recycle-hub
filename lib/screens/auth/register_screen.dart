@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/button.dart';
-import '../widgets/labelTextField.dart';
+import '../choose_screen.dart';
+import '../../widgets/button.dart';
+import '../../widgets/labelTextField.dart';
 
 class RegisterScreen extends StatelessWidget {
   static const routeName = '/register';
@@ -78,7 +79,10 @@ class RegisterScreen extends StatelessWidget {
                         text: 'Sign up',
                         buttonColor: Color(0xFFEFFCEF),
                         textColor: Theme.of(context).primaryColor,
-                        onClick: () {},
+                        onClick: () {
+                          Navigator.of(context)
+                              .pushNamed(ChooseScreen.routeName);
+                        },
                       ),
                     ),
                   ],

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 import './register_screen.dart';
-import '../widgets/labelTextField.dart';
-import '../widgets/button.dart';
+import '../choose_screen.dart';
+import '../../widgets/labelTextField.dart';
+import '../../widgets/button.dart';
+import '../../widgets/logo.dart';
 
 class AuthScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Container(
@@ -24,18 +25,12 @@ class AuthScreen extends StatelessWidget {
         child: Container(
           child: ListView(
             children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(
-                    top: deviceHeight / 7, bottom: 50, left: 20, right: 20),
-                child: Image(
-                  image: AssetImage('assets/images/logo.png'),
-                ),
-              ),
+              Logo(),
               Center(
                 child: Container(
                   width: double.infinity,
                   margin: EdgeInsets.symmetric(horizontal: 25),
-                  height: 375,
+                  height: 370,
                   decoration: BoxDecoration(
                     color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.all(
@@ -111,7 +106,11 @@ class AuthScreen extends StatelessWidget {
                             text: 'Sign In',
                             buttonColor: Color(0xFFEFFCEF),
                             textColor: Theme.of(context).primaryColor,
-                            onClick: () {},
+                            onClick: () {
+                              //Sign in function here
+                              Navigator.of(context)
+                                  .pushNamed(ChooseScreen.routeName);
+                            },
                           ),
                         ),
                       ],

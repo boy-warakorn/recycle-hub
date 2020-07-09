@@ -10,7 +10,7 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return RaisedButton(
       elevation: 10,
-      onPressed: () {},
+      onPressed: onClick,
       color: buttonColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
