@@ -25,7 +25,7 @@ class LabelTextField extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(5)),
           ),
           child: Container(
-            height: 40,
+            height: 35,
             margin: EdgeInsets.only(
               left: 10,
             ),

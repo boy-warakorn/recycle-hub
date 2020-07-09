@@ -9,6 +9,7 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
+      elevation: 10,
       onPressed: () {},
       color: buttonColor,
       shape: RoundedRectangleBorder(

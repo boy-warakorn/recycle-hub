@@ -19,8 +19,9 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        primaryColor: Color(0xFF655C56),
+        accentColor: Color(0xFF94D3AC),
         fontFamily: 'Montserrat',
-        primarySwatch: Colors.blue,
       ),
       home: AuthScreen(),
       routes: {

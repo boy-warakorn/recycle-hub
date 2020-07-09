@@ -8,24 +8,27 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFF94D3AC),
+        backgroundColor: Theme.of(context).accentColor,
         appBar: AppBar(
           titleSpacing: 0,
           automaticallyImplyLeading: false,
           elevation: 0,
-          backgroundColor: Color(0xFF94D3AC),
+          backgroundColor: Theme.of(context).accentColor,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               IconButton(
                 onPressed: () => Navigator.pop(context),
-                icon: Icon(Icons.arrow_back_ios, color: Color(0xFF655C56)),
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
               Text(
                 'Create Account',
                 style: TextStyle(
-                  color: Color(0xFF655C56),
+                  color: Theme.of(context).primaryColor,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
@@ -74,7 +77,7 @@ class RegisterScreen extends StatelessWidget {
                       child: Button(
                         text: 'Sign up',
                         buttonColor: Color(0xFFEFFCEF),
-                        textColor: Color(0xFF655C56),
+                        textColor: Theme.of(context).primaryColor,
                         onClick: () {},
                       ),
                     ),
