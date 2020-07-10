@@ -55,48 +55,44 @@ class AuthScreen extends StatelessWidget {
                         SizedBox(
                           height: 25,
                         ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.of(context)
-                                .pushNamed(RegisterScreen.routeName);
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                'Don\'t have account ?',
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              'Don\'t have account ?',
+                              style: TextStyle(
+                                color: Color(0xffEFFCEF),
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            RaisedButton(
+                              elevation: 10,
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pushNamed(RegisterScreen.routeName);
+                              },
+                              color: Color(0xFFEFFCEF),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                vertical: 10,
+                                horizontal: 10,
+                              ),
+                              child: Text(
+                                "Sign up",
                                 style: TextStyle(
-                                  color: Color(0xffEFFCEF),
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).primaryColor,
                                 ),
                               ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              RaisedButton(
-                                elevation: 10,
-                                onPressed: () {
-                                  Navigator.of(context)
-                                      .pushNamed(RegisterScreen.routeName);
-                                },
-                                color: Color(0xFFEFFCEF),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 10),
-                                child: Text(
-                                  "Sign up",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                         SizedBox(
                           height: 20,

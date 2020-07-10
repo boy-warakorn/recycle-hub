@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'screens/auth/auth_screen.dart';
 import 'screens/auth/register_screen.dart';
 import 'screens/choose_screen.dart';
+import 'screens/home_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,6 +22,10 @@ class _MyAppState extends State<MyApp> {
       title: 'Flutter Demo',
       theme: ThemeData(
         primaryColor: Color(0xFF655C56),
+        appBarTheme: AppBarTheme(
+          color: Color(0xFF655C56),
+          elevation: 0,
+        ),
         accentColor: Color(0xFF94D3AC),
         fontFamily: 'Montserrat',
       ),
@@ -28,6 +33,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         RegisterScreen.routeName: (ctx) => RegisterScreen(),
         ChooseScreen.routeName: (ctx) => ChooseScreen(),
+        HomeScreen.routeName: (ctx) => HomeScreen(),
       },
     );
   }

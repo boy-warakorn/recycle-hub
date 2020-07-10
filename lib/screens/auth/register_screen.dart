@@ -14,7 +14,7 @@ class RegisterScreen extends StatelessWidget {
           titleSpacing: 0,
           automaticallyImplyLeading: false,
           elevation: 0,
-          backgroundColor: Theme.of(context).accentColor,
+          backgroundColor: Color(0xFF94D3AC),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,

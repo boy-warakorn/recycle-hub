@@ -5,7 +5,13 @@ class Button extends StatelessWidget {
   final Color buttonColor;
   final Color textColor;
   final Function onClick;
-  Button({this.text, this.buttonColor, this.textColor, this.onClick});
+
+  Button({
+    this.text,
+    this.buttonColor,
+    this.textColor,
+    this.onClick,
+  });
   @override
   Widget build(BuildContext context) {
     return RaisedButton(

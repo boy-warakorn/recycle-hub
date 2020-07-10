@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/logo.dart';
 import '../widgets/button.dart';
+import '../screens/home_screen.dart';
 
 class ChooseScreen extends StatelessWidget {
   static const routeName = "/choose";
@@ -61,7 +62,10 @@ class ChooseScreen extends StatelessWidget {
                   text: "Home",
                   textColor: Theme.of(context).primaryColor,
                   buttonColor: Color(0xffEFFCEF),
-                  onClick: () {},
+                  onClick: () {
+                    Navigator.of(context)
+                        .pushReplacementNamed(HomeScreen.routeName);
+                  },
                 ),
                 Container(
                   margin: EdgeInsets.only(
@@ -75,7 +79,7 @@ class ChooseScreen extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
