@@ -27,40 +27,18 @@ class _MainShopScreenState extends State<MainShopScreen> {
 
     const DUMMY_ITEM = const [
       {
+        'id': '1',
         'title': 'Bottle',
         'price': '50',
         "per": 'Kg',
         'assetPath': 'assets/images/bottle_mockup.jpg',
       },
       {
+        'id': '2',
         'title': 'Card board',
         'price': '50',
         "per": 'Kg',
         'assetPath': 'assets/images/cardboard_mockup.png',
-      },
-      {
-        'title': 'Bottle',
-        'price': '50',
-        "per": 'Kg',
-        'assetPath': 'assets/images/bottle_mockup.jpg',
-      },
-      {
-        'title': 'Bottle',
-        'price': '50',
-        "per": 'Kg',
-        'assetPath': 'assets/images/bottle_mockup.jpg',
-      },
-      {
-        'title': 'Bottle',
-        'price': '50',
-        "per": 'Kg',
-        'assetPath': 'assets/images/bottle_mockup.jpg',
-      },
-      {
-        'title': 'Bottle',
-        'price': '50',
-        "per": 'Kg',
-        'assetPath': 'assets/images/bottle_mockup.jpg',
       },
     ];
 
@@ -190,16 +168,6 @@ class _MainShopScreenState extends State<MainShopScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                'All Items',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
               _showGridView
                   ? Container(
                       height: deviceHeight - appbar.preferredSize.height - 83,
@@ -216,6 +184,7 @@ class _MainShopScreenState extends State<MainShopScreen> {
                           per: DUMMY_ITEM[index]['per'],
                           price: DUMMY_ITEM[index]['price'],
                           title: DUMMY_ITEM[index]['title'],
+                          id: DUMMY_ITEM[index]['id'],
                         ),
                       ),
                     )
