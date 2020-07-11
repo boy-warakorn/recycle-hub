@@ -28,7 +28,7 @@ class ShopItems extends StatelessWidget {
         margin: EdgeInsets.all(
           0,
         ),
-        color: Theme.of(context).accentColor,
+        color: Color(0xFFEFFCEF),
         elevation: 4,
         child: Column(
           children: <Widget>[

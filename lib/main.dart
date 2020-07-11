@@ -4,6 +4,7 @@ import 'screens/auth/auth_screen.dart';
 import 'screens/auth/register_screen.dart';
 import 'screens/choose_screen.dart';
 import 'screens/home_screen.dart';
+import 'screens/main_shop_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Recycle Hub',
       theme: ThemeData(
         primaryColor: Color(0xFF655C56),
         appBarTheme: AppBarTheme(
@@ -34,6 +35,7 @@ class _MyAppState extends State<MyApp> {
         RegisterScreen.routeName: (ctx) => RegisterScreen(),
         ChooseScreen.routeName: (ctx) => ChooseScreen(),
         HomeScreen.routeName: (ctx) => HomeScreen(),
+        MainShopScreen.routeName: (ctx) => MainShopScreen(),
       },
     );
   }

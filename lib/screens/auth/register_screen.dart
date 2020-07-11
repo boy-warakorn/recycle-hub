@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../choose_screen.dart';
-import '../../widgets/button.dart';
+import '../../widgets/button/button.dart';
 import '../../widgets/labelTextField.dart';
 
 class RegisterScreen extends StatelessWidget {

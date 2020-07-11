@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/drawer.dart';
-import '../widgets/logoText.dart';
-import '../widgets/buttonHomeBox.dart';
-import '../widgets/shop_items.dart';
+import '../widgets/drawer/drawer.dart';
+import '../widgets/logo/logoText.dart';
+import '../widgets/button/buttonHomeBox.dart';
+import '../widgets/shopItems/shop_items.dart';
+import '../screens/main_shop_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home';
@@ -58,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text(
                       'Manage',
                       style: TextStyle(
-                        fontSize: 24,
+                        fontSize: 22,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -71,15 +72,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           firstChild: Text(
                             'hide',
                             style: TextStyle(
-                              fontSize: 24,
+                              fontSize: 22,
                               fontWeight: FontWeight.w500,
+                              color: Theme.of(context).primaryColor,
                             ),
                           ),
                           secondChild: Text(
                             'show',
                             style: TextStyle(
-                              fontSize: 24,
+                              fontSize: 22,
                               fontWeight: FontWeight.w500,
+                              color: Theme.of(context).primaryColor,
                             ),
                           ),
                           crossFadeState: _show
@@ -95,12 +98,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             icon: Icon(
                               Icons.keyboard_arrow_up,
                               size: 30,
+                              color: Theme.of(context).primaryColor,
                             ),
                           ),
                           secondChild: IconButton(
                             onPressed: onChanged,
                             icon: Icon(
                               Icons.keyboard_arrow_down,
+                              color: Theme.of(context).primaryColor,
                               size: 30,
                             ),
                           ),
@@ -115,48 +120,55 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 10,
                 ),
-                _show
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          ButtonHomeBox(
-                            icon: Icon(
-                              Icons.message,
-                              size: 45,
-                              color: Theme.of(context).accentColor,
-                            ),
-                            text: "Chats",
-                            width: deviceWidth / 4,
-                            height: 90,
-                            onTap: () {},
-                          ),
-                          ButtonHomeBox(
-                            icon: Icon(
-                              Icons.account_circle,
-                              size: 45,
-                              color: Theme.of(context).accentColor,
-                            ),
-                            text: "Profiles",
-                            width: deviceWidth / 4,
-                            height: 90,
-                            onTap: () {},
-                          ),
-                          ButtonHomeBox(
-                            icon: Icon(
-                              Icons.shop,
-                              size: 45,
-                              color: Theme.of(context).accentColor,
-                            ),
-                            text: "My Shop",
-                            width: deviceWidth / 4,
-                            height: 90,
-                            onTap: () {},
-                          ),
-                        ],
-                      )
-                    : Material(
-                        type: MaterialType.transparency,
+                AnimatedCrossFade(
+                  duration: const Duration(
+                    milliseconds: 300,
+                  ),
+                  firstChild: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      ButtonHomeBox(
+                        icon: Icon(
+                          Icons.message,
+                          size: 45,
+                          color: Theme.of(context).accentColor,
+                        ),
+                        text: "Chats",
+                        width: deviceWidth / 4,
+                        height: 90,
+                        onTap: () {},
                       ),
+                      ButtonHomeBox(
+                        icon: Icon(
+                          Icons.account_circle,
+                          size: 45,
+                          color: Theme.of(context).accentColor,
+                        ),
+                        text: "Profiles",
+                        width: deviceWidth / 4,
+                        height: 90,
+                        onTap: () {},
+                      ),
+                      ButtonHomeBox(
+                        icon: Icon(
+                          Icons.shop,
+                          size: 45,
+                          color: Theme.of(context).accentColor,
+                        ),
+                        text: "My Shop",
+                        width: deviceWidth / 4,
+                        height: 90,
+                        onTap: () {},
+                      ),
+                    ],
+                  ),
+                  secondChild: Material(
+                    type: MaterialType.transparency,
+                  ),
+                  crossFadeState: _show
+                      ? CrossFadeState.showFirst
+                      : CrossFadeState.showSecond,
+                ),
                 _show
                     ? SizedBox(
                         height: 15,
@@ -176,7 +188,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         size: 70,
                         color: Theme.of(context).accentColor,
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context)
+                            .pushNamed(MainShopScreen.routeName);
+                      },
                     ),
                     ButtonHomeBox(
                       height: 120,
@@ -194,12 +209,37 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 15,
                 ),
-                Text(
-                  'Suggested for you',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w500,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      'Suggested',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () => Navigator.of(context)
+                          .pushNamed(MainShopScreen.routeName),
+                      child: Row(
+                        children: <Widget>[
+                          Text(
+                            'Show All',
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w500,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
+                          Icon(
+                            Icons.keyboard_arrow_right,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: 15,

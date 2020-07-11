@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import './register_screen.dart';
 import '../choose_screen.dart';
 import '../../widgets/labelTextField.dart';
-import '../../widgets/button.dart';
-import '../../widgets/logo.dart';
+import '../../widgets/button/button.dart';
+import '../../widgets/logo/logo.dart';
 
 class AuthScreen extends StatelessWidget {
   @override

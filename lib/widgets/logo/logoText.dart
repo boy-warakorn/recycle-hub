@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class LogoText extends StatelessWidget {
+  final Color color;
+
+  LogoText({this.color = Colors.white});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,6 +16,7 @@ class LogoText extends StatelessWidget {
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
+              color: color,
             ),
           ),
           SizedBox(

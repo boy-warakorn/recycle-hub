@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/logo.dart';
-import '../widgets/button.dart';
+import '../widgets/logo/logo.dart';
+import '../widgets/button/button.dart';
 import '../screens/home_screen.dart';
 
 class ChooseScreen extends StatelessWidget {

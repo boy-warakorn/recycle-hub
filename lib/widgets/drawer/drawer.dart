@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'drawerItem.dart';
+import '../../screens/home_screen.dart';
+import '../drawer/drawerItem.dart';
+import '../logo/logoText.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -51,22 +53,18 @@ class MainDrawer extends StatelessWidget {
                 margin: EdgeInsets.only(
                   top: 60,
                   left: 30,
+                  right: 30,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      'Recycle Hub',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15,
+                    LogoText(),
+                    Divider(
+                      color: Colors.white,
+                      thickness: 2,
                     ),
                     Text(
-                      'Warakorn Chantranupong',
+                      'Warakorn Chantranupong.',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
@@ -84,6 +82,21 @@ class MainDrawer extends StatelessWidget {
             ),
             child: Column(
               children: <Widget>[
+                DrawerItem(
+                  title: 'Home',
+                  icon: Icon(
+                    Icons.home,
+                    size: 30,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  onTap: () {
+                    Navigator.of(context)
+                        .pushReplacementNamed(HomeScreen.routeName);
+                  },
+                ),
+                SizedBox(
+                  height: 30,
+                ),
                 DrawerItem(
                   title: 'Your shop',
                   icon: Icon(
@@ -107,17 +120,6 @@ class MainDrawer extends StatelessWidget {
                   height: 30,
                 ),
                 DrawerItem(
-                  title: 'Contact us',
-                  icon: Icon(
-                    Icons.live_help,
-                    size: 30,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                DrawerItem(
                   title: 'Chat',
                   icon: Icon(
                     Icons.message,
@@ -129,9 +131,9 @@ class MainDrawer extends StatelessWidget {
                   height: 30,
                 ),
                 DrawerItem(
-                  title: 'Home',
+                  title: 'Contact us',
                   icon: Icon(
-                    Icons.home,
+                    Icons.live_help,
                     size: 30,
                     color: Theme.of(context).primaryColor,
                   ),
