@@ -43,6 +43,7 @@ flutter:
     - assets/images/logo.png
     - assets/images/bottle_mockup.jpg
     - assets/images/cardboard_mockup.png
+    - assets/images/newspaper_mockup.png
     - assets/images/recycle_waste_1.jpg
     - assets/images/recycle_waste_2.png
     - assets/images/contact.png

@@ -49,6 +49,7 @@ class MainShopItem extends StatelessWidget {
             children: <Widget>[
               Ink(
                 height: 172.7,
+                width: double.infinity,
                 child: ClipRRect(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(

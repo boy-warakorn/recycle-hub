@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/shopItems/main_shop_items.dart';
 import '../widgets/drawer/drawer.dart';
+import '../widgets/shopItems/list_Item.dart';
 
 enum ViewOptions {
   ListView,
@@ -18,7 +19,7 @@ class MainShopScreen extends StatefulWidget {
 class _MainShopScreenState extends State<MainShopScreen> {
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
-  bool _showGridView = true;
+  bool _showGridView = false;
   bool _isSearch = false;
 
   @override
@@ -32,13 +33,29 @@ class _MainShopScreenState extends State<MainShopScreen> {
         'price': '50',
         "per": 'Kg',
         'assetPath': 'assets/images/bottle_mockup.jpg',
+        'shopName': 'testNumberOne',
+        'detail':
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis mollis cursus pharetra dictumst mus. Mauris consectetur placerat dignissim morbi lorem ',
       },
       {
         'id': '2',
         'title': 'Card board',
-        'price': '50',
+        'price': '30',
         "per": 'Kg',
         'assetPath': 'assets/images/cardboard_mockup.png',
+        'shopName': 'testNumberTwo',
+        'detail':
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis mollis cursus pharetra dictumst mus. Mauris consectetur placerat dignissim morbi lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis mollis cursus pharetra dictumst mus. Mauris consectetur placerat dignissim morbi lorem '
+      },
+      {
+        'id': '3',
+        'title': 'Newspaper',
+        'price': '100',
+        "per": 'Kg',
+        'assetPath': 'assets/images/newspaper_mockup.png',
+        'shopName': 'testNumberThree',
+        'detail':
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis mollis cursus pharetra dictumst mus. Mauris consectetur placerat dignissim morbi lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis mollis cursus pharetra dictumst mus. Mauris consectetur placerat dignissim morbi lorem '
       },
     ];
 
@@ -158,18 +175,18 @@ class _MainShopScreenState extends State<MainShopScreen> {
       key: _drawerKey,
       drawer: MainDrawer(),
       appBar: appbar,
-      body: Container(
-        margin: EdgeInsets.only(
-          left: 20,
-          top: 20,
-          right: 20,
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              _showGridView
-                  ? Container(
+      body: _showGridView
+          ? Container(
+              margin: EdgeInsets.only(
+                left: 20,
+                top: 20,
+                right: 20,
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
                       height: deviceHeight - appbar.preferredSize.height - 83,
                       child: GridView.builder(
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -188,13 +205,26 @@ class _MainShopScreenState extends State<MainShopScreen> {
                         ),
                       ),
                     )
-                  : Text(
-                      'This is list view',
-                    ),
-            ],
-          ),
-        ),
-      ),
+                  ],
+                ),
+              ),
+            )
+          : Container(
+              margin: EdgeInsets.only(
+                top: 5,
+              ),
+              child: ListView.builder(
+                itemCount: DUMMY_ITEM.length,
+                itemBuilder: (ctx, index) => ListItem(
+                  assetPath: DUMMY_ITEM[index]['assetPath'],
+                  per: DUMMY_ITEM[index]['per'],
+                  price: DUMMY_ITEM[index]['price'],
+                  title: DUMMY_ITEM[index]['title'],
+                  id: DUMMY_ITEM[index]['id'],
+                  shopName: DUMMY_ITEM[index]['shopName'],
+                ),
+              ),
+            ),
     );
   }
 }

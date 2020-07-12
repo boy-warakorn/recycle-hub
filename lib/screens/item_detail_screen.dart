@@ -27,6 +27,16 @@ class ItemDetailScreen extends StatelessWidget {
         'detail':
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis mollis cursus pharetra dictumst mus. Mauris consectetur placerat dignissim morbi lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis mollis cursus pharetra dictumst mus. Mauris consectetur placerat dignissim morbi lorem '
       },
+      {
+        'id': '3',
+        'title': 'Newspaper',
+        'price': '100',
+        "per": 'Kg',
+        'assetPath': 'assets/images/newspaper_mockup.png',
+        'shopName': 'testNumberThree',
+        'detail':
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis mollis cursus pharetra dictumst mus. Mauris consectetur placerat dignissim morbi lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis mollis cursus pharetra dictumst mus. Mauris consectetur placerat dignissim morbi lorem '
+      },
     ];
     final itemId = ModalRoute.of(context).settings.arguments;
     final itemSelected =
