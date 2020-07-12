@@ -8,6 +8,8 @@ class MainShopItem extends StatelessWidget {
   final String per;
   final String assetPath;
   final String id;
+  final double width;
+  final double height;
 
   MainShopItem({
     this.title,
@@ -15,6 +17,8 @@ class MainShopItem extends StatelessWidget {
     this.per,
     this.assetPath,
     this.id,
+    this.height = double.infinity,
+    this.width = double.infinity,
   });
 
   @override
@@ -39,8 +43,8 @@ class MainShopItem extends StatelessWidget {
               30,
             ),
           ),
-          height: double.infinity,
-          width: double.infinity,
+          height: height,
+          width: width,
           child: Column(
             children: <Widget>[
               Ink(

@@ -6,6 +6,7 @@ import 'screens/choose_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/main_shop_screen.dart';
 import 'screens/item_detail_screen.dart';
+import 'screens/waste_info_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -38,6 +39,7 @@ class _MyAppState extends State<MyApp> {
         HomeScreen.routeName: (ctx) => HomeScreen(),
         MainShopScreen.routeName: (ctx) => MainShopScreen(),
         ItemDetailScreen.routeName: (ctx) => ItemDetailScreen(),
+        WasteInfoScreen.routeName: (ctx) => WasteInfoScreen(),
       },
     );
   }

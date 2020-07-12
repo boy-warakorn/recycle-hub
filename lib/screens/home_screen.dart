@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import '../widgets/drawer/drawer.dart';
 import '../widgets/logo/logoText.dart';
 import '../widgets/button/buttonHomeBox.dart';
-import '../widgets/shopItems/shop_items.dart';
-import '../screens/main_shop_screen.dart';
+import '../widgets/shopItems/main_shop_items.dart';
+
+import './waste_info_screen.dart';
+import './main_shop_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home';
@@ -24,6 +26,23 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    const DUMMY_ITEM = const [
+      {
+        'id': '1',
+        'title': 'Bottle',
+        'price': '50',
+        "per": 'Kg',
+        'assetPath': 'assets/images/bottle_mockup.jpg',
+      },
+      {
+        'id': '2',
+        'title': 'Card board',
+        'price': '50',
+        "per": 'Kg',
+        'assetPath': 'assets/images/cardboard_mockup.png',
+      },
+    ];
+
     final deviceWidth = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
@@ -50,8 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
               horizontal: 20,
               vertical: 20,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: ListView(
               children: <Widget>[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -202,7 +220,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         size: 70,
                         color: Theme.of(context).accentColor,
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context)
+                            .pushNamed(WasteInfoScreen.routeName);
+                      },
                     )
                   ],
                 ),
@@ -247,17 +268,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    ShopItems(
+                    MainShopItem(
                       title: 'Bottles',
                       price: '20',
                       per: 'kg',
                       assetPath: 'assets/images/bottle_mockup.jpg',
+                      id: '1',
+                      width: deviceWidth / 2.4,
+                      height: 225,
                     ),
-                    ShopItems(
+                    MainShopItem(
                       title: 'Cardboard',
                       price: '30',
                       per: 'kg',
                       assetPath: "assets/images/cardboard_mockup.png",
+                      id: '2',
+                      width: deviceWidth / 2.4,
+                      height: 225,
                     ),
                   ],
                 )

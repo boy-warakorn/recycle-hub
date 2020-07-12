@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/button/buttonWithIcon.dart';
+
 class ItemDetailScreen extends StatelessWidget {
   static const routeName = '/itemDetail';
   @override
@@ -144,7 +146,32 @@ class ItemDetailScreen extends StatelessWidget {
                         color: Colors.grey,
                         width: double.infinity,
                         height: 200,
-                      )
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Divider(
+                        thickness: 2,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        'Address',
+                        style: TextStyle(
+                          fontSize: 24,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        detail,
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -153,28 +180,11 @@ class ItemDetailScreen extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: RaisedButton.icon(
-        padding: EdgeInsets.symmetric(
-          horizontal: 25,
-          vertical: 15,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            20,
-          ),
-        ),
-        color: Theme.of(context).primaryColor,
-        onPressed: () {},
-        elevation: 4,
-        label: Text(
-          'Contact',
-          style: TextStyle(
-            fontSize: 22,
-            color: Colors.white,
-          ),
-        ),
+      floatingActionButton: ButtonWithIcon(
+        text: 'Contact',
         icon: Icon(
           Icons.chat,
+          size: 26,
           color: Colors.white,
         ),
       ),
