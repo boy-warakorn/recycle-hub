@@ -73,9 +73,10 @@ class _MainShopScreenState extends State<MainShopScreen> {
                 ),
                 Text(
                   'Shop',
-                  style: TextStyle(
-                    fontSize: 24,
-                  ),
+                  style: Theme.of(context).textTheme.headline1.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal,
+                      ),
                 ),
               ],
             )
@@ -88,15 +89,13 @@ class _MainShopScreenState extends State<MainShopScreen> {
                     Icons.search,
                     color: Colors.white,
                   ),
-                  hintStyle: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 22,
-                  ),
+                  hintStyle: Theme.of(context).textTheme.headline2.copyWith(
+                        color: Colors.grey,
+                      ),
                 ),
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                ),
+                style: Theme.of(context).textTheme.headline2.copyWith(
+                      color: Colors.white,
+                    ),
                 cursorColor: Colors.white,
               ),
             ),
