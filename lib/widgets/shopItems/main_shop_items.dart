@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../screens/item_detail_screen.dart';
+import '../../screens/shop/item_detail_screen.dart';
 
 class MainShopItem extends StatelessWidget {
   final String title;
@@ -89,19 +89,11 @@ class MainShopItem extends StatelessWidget {
                         children: <Widget>[
                           Text(
                             title,
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.white,
-                              fontFamily: 'SourceSansPro',
-                            ),
+                            style: Theme.of(context).textTheme.bodyText2,
                           ),
                           Text(
                             '$price Bath/$per',
-                            style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white,
-                                fontFamily: 'SourceSansPro'),
+                            style: Theme.of(context).textTheme.bodyText2,
                           ),
                         ],
                       ),
@@ -131,11 +123,12 @@ class MainShopItem extends StatelessWidget {
                             children: <Widget>[
                               Text(
                                 'More detail',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Theme.of(context).primaryColor,
-                                  fontFamily: 'SourceSansPro',
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    .copyWith(
+                                      color: Theme.of(context).primaryColor,
+                                    ),
                               ),
                               Icon(
                                 Icons.arrow_forward_ios,

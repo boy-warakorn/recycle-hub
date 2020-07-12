@@ -11,12 +11,9 @@ class LabelTextField extends StatelessWidget {
       children: <Widget>[
         Text(
           labelText,
-          style: TextStyle(
-            color: Color(0xffEFFCEF),
-            fontSize: 24,
-            fontFamily: 'Montserrat',
-            fontWeight: FontWeight.w500,
-          ),
+          style: Theme.of(context).textTheme.headline2.copyWith(
+                color: Colors.white,
+              ),
         ),
         Container(
           margin: EdgeInsets.only(top: 10),

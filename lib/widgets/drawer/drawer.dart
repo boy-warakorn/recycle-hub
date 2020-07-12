@@ -65,10 +65,9 @@ class MainDrawer extends StatelessWidget {
                     ),
                     Text(
                       'Warakorn Chantranupong.',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                      ),
+                      style: Theme.of(context).textTheme.headline3.copyWith(
+                            color: Colors.white,
+                          ),
                     ),
                   ],
                 ),

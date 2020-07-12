@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../screens/item_detail_screen.dart';
+import '../../screens/shop/item_detail_screen.dart';
 
 class ListItem extends StatelessWidget {
   final String title;
@@ -67,9 +67,7 @@ class ListItem extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: TextStyle(
-                        fontSize: 22,
-                      ),
+                      style: Theme.of(context).textTheme.headline2,
                     ),
                     SizedBox(
                       height: 5,
@@ -78,9 +76,10 @@ class ListItem extends StatelessWidget {
                       !(shopName.length > 11)
                           ? 'Shop name: $shopName'
                           : 'Shop name: ${shopName.substring(0, 11)}...',
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
+                      style: Theme.of(context).textTheme.headline3.copyWith(
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal,
+                          ),
                     ),
                     SizedBox(
                       height: 10,
@@ -98,10 +97,10 @@ class ListItem extends StatelessWidget {
                       ),
                       child: Text(
                         '$price Baht/$per',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                        ),
+                        style: Theme.of(context).textTheme.headline3.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.normal,
+                            ),
                       ),
                     ),
                   ],

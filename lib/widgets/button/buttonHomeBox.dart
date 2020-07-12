@@ -46,10 +46,10 @@ class ButtonHomeBox extends StatelessWidget {
               ),
               Text(
                 text,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
-                ),
+                style: Theme.of(context).textTheme.headline3.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.normal,
+                    ),
               )
             ],
           ),

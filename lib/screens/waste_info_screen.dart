@@ -45,11 +45,7 @@ class _WasteInfoScreenState extends State<WasteInfoScreen> {
             ),
             Text(
               'What is ?',
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.headline1,
             ),
           ],
         ),
@@ -78,10 +74,9 @@ class _WasteInfoScreenState extends State<WasteInfoScreen> {
                 ),
                 Text(
                   'What is Recycle waste ?',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.headline2.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
@@ -91,9 +86,7 @@ class _WasteInfoScreenState extends State<WasteInfoScreen> {
                   width: 350,
                   child: Text(
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Enim non nulla odio in. Morbi dignissim interdum molestie nulla nulla. Facilisi aliquet egestas nunc aliquet cursus. Egestas at viverra posuere ornare venenatis.',
-                    style: TextStyle(
-                      fontSize: 15,
-                    ),
+                    style: Theme.of(context).textTheme.bodyText1,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -125,10 +118,9 @@ class _WasteInfoScreenState extends State<WasteInfoScreen> {
                 ),
                 Text(
                   'What we consider to be Recycle waste ?',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.headline2.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
@@ -138,9 +130,7 @@ class _WasteInfoScreenState extends State<WasteInfoScreen> {
                   width: 350,
                   child: Text(
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Enim non nulla odio in. Morbi dignissim interdum molestie nulla nulla. Facilisi aliquet egestas nunc aliquet cursus. Egestas at viverra posuere ornare venenatis.',
-                    style: TextStyle(
-                      fontSize: 15,
-                    ),
+                    style: Theme.of(context).textTheme.bodyText1,
                     textAlign: TextAlign.center,
                   ),
                 ),

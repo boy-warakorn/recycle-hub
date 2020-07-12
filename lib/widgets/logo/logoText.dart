@@ -13,11 +13,9 @@ class LogoText extends StatelessWidget {
         children: <Widget>[
           Text(
             'Recycle',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: color,
-            ),
+            style: Theme.of(context).textTheme.headline1.copyWith(
+                  color: Colors.white,
+                ),
           ),
           SizedBox(
             width: 5,
@@ -30,11 +28,7 @@ class LogoText extends StatelessWidget {
             ),
             child: Text(
               'Hub',
-              style: TextStyle(
-                fontSize: 24,
-                color: Theme.of(context).primaryColor,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.headline1,
             ),
           ),
         ],

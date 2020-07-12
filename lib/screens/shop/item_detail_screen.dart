@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/button/buttonWithIcon.dart';
+import '../../widgets/button/buttonWithIcon.dart';
 
 class ItemDetailScreen extends StatelessWidget {
   static const routeName = '/itemDetail';
@@ -87,15 +87,19 @@ class ItemDetailScreen extends StatelessWidget {
                         children: <Widget>[
                           Text(
                             title,
-                            style: TextStyle(
-                              fontSize: 24,
-                            ),
+                            style:
+                                Theme.of(context).textTheme.headline1.copyWith(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                           ),
                           Text(
                             '$price Baht/$per',
-                            style: TextStyle(
-                              fontSize: 24,
-                            ),
+                            style:
+                                Theme.of(context).textTheme.headline1.copyWith(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                           ),
                         ],
                       ),
@@ -104,9 +108,9 @@ class ItemDetailScreen extends StatelessWidget {
                       ),
                       Text(
                         'Shop name: $shopName',
-                        style: TextStyle(
-                          fontSize: 15,
-                        ),
+                        style: Theme.of(context).textTheme.bodyText1.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
                       SizedBox(
                         height: 15,
@@ -120,18 +124,17 @@ class ItemDetailScreen extends StatelessWidget {
                       ),
                       Text(
                         'Detail',
-                        style: TextStyle(
-                          fontSize: 24,
-                        ),
+                        style: Theme.of(context).textTheme.headline1.copyWith(
+                              color: Colors.black,
+                              fontWeight: FontWeight.normal,
+                            ),
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       Text(
                         detail,
-                        style: TextStyle(
-                          fontSize: 15,
-                        ),
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                       SizedBox(
                         height: 15,
@@ -145,9 +148,10 @@ class ItemDetailScreen extends StatelessWidget {
                       ),
                       Text(
                         'Location',
-                        style: TextStyle(
-                          fontSize: 24,
-                        ),
+                        style: Theme.of(context).textTheme.headline1.copyWith(
+                              color: Colors.black,
+                              fontWeight: FontWeight.normal,
+                            ),
                       ),
                       SizedBox(
                         height: 15,
@@ -169,18 +173,17 @@ class ItemDetailScreen extends StatelessWidget {
                       ),
                       Text(
                         'Address',
-                        style: TextStyle(
-                          fontSize: 24,
-                        ),
+                        style: Theme.of(context).textTheme.headline1.copyWith(
+                              color: Colors.black,
+                              fontWeight: FontWeight.normal,
+                            ),
                       ),
                       SizedBox(
                         height: 5,
                       ),
                       Text(
                         detail,
-                        style: TextStyle(
-                          fontSize: 15,
-                        ),
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                     ],
                   ),

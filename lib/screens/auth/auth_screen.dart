@@ -60,11 +60,12 @@ class AuthScreen extends StatelessWidget {
                           children: <Widget>[
                             Text(
                               'Don\'t have account ?',
-                              style: TextStyle(
-                                color: Color(0xffEFFCEF),
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline3
+                                  .copyWith(
+                                    color: Colors.white,
+                                  ),
                             ),
                             SizedBox(
                               width: 10,
@@ -72,8 +73,9 @@ class AuthScreen extends StatelessWidget {
                             RaisedButton(
                               elevation: 10,
                               onPressed: () {
-                                Navigator.of(context)
-                                    .pushNamed(RegisterScreen.routeName);
+                                Navigator.of(context).pushNamed(
+                                  RegisterScreen.routeName,
+                                );
                               },
                               color: Color(0xFFEFFCEF),
                               shape: RoundedRectangleBorder(
@@ -85,11 +87,7 @@ class AuthScreen extends StatelessWidget {
                               ),
                               child: Text(
                                 "Sign up",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).primaryColor,
-                                ),
+                                style: Theme.of(context).textTheme.headline3,
                               ),
                             ),
                           ],

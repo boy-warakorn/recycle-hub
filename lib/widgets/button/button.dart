@@ -27,11 +27,10 @@ class Button extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-          color: textColor,
-        ),
+        style: Theme.of(context).textTheme.headline2.copyWith(
+              color: textColor,
+              fontWeight: FontWeight.bold,
+            ),
       ),
     );
   }

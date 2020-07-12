@@ -34,10 +34,9 @@ class ButtonWithIcon extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     text,
-                    style: TextStyle(
-                      fontSize: 22,
-                      color: Colors.white,
-                    ),
+                    style: Theme.of(context).textTheme.headline2.copyWith(
+                          color: Colors.white,
+                        ),
                   ),
                   SizedBox(
                     width: 5,
@@ -54,10 +53,9 @@ class ButtonWithIcon extends StatelessWidget {
                   ),
                   Text(
                     text,
-                    style: TextStyle(
-                      fontSize: 22,
-                      color: Colors.white,
-                    ),
+                    style: Theme.of(context).textTheme.headline2.copyWith(
+                          color: Colors.white,
+                        ),
                   ),
                 ],
               ),

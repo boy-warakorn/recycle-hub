@@ -2,11 +2,21 @@ import 'package:flutter/material.dart';
 
 import 'screens/auth/auth_screen.dart';
 import 'screens/auth/register_screen.dart';
+
 import 'screens/choose_screen.dart';
 import 'screens/home_screen.dart';
-import 'screens/main_shop_screen.dart';
-import 'screens/item_detail_screen.dart';
 import 'screens/waste_info_screen.dart';
+import 'screens/contact_us_screen.dart';
+import 'screens/profile_screen.dart';
+
+import 'screens/shop/main_shop_screen.dart';
+import 'screens/shop/item_detail_screen.dart';
+import 'screens/shop/add_item_screen.dart';
+import 'screens/shop/own_shop_screen.dart';
+import 'screens/shop/create_shop_screen.dart';
+
+import 'screens/chat/chat_screen.dart';
+import 'screens/chat/main_chat_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,6 +39,39 @@ class _MyAppState extends State<MyApp> {
           color: Color(0xFF655C56),
           elevation: 0,
         ),
+        textTheme: TextTheme(
+          //Header 1 text
+          headline1: TextStyle(
+            fontSize: 24,
+            color: Color(0xFF655C56),
+            fontWeight: FontWeight.bold,
+          ),
+          //Header 2 text
+          headline2: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.w500,
+            color: Colors.black,
+          ),
+          //Header 3 text
+          headline3: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF655C56),
+          ),
+          //body 1 text
+          bodyText1: TextStyle(
+            fontSize: 15,
+            fontFamily: 'SourceSansPro',
+            color: Colors.black,
+          ),
+          //body 2 text
+          bodyText2: TextStyle(
+            fontSize: 12,
+            fontFamily: 'SourceSansPro',
+            color: Colors.white,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
         accentColor: Color(0xFF94D3AC),
         fontFamily: 'Montserrat',
       ),
@@ -40,6 +83,13 @@ class _MyAppState extends State<MyApp> {
         MainShopScreen.routeName: (ctx) => MainShopScreen(),
         ItemDetailScreen.routeName: (ctx) => ItemDetailScreen(),
         WasteInfoScreen.routeName: (ctx) => WasteInfoScreen(),
+        ContactUsScreen.routeName: (ctx) => ContactUsScreen(),
+        ProfileScreen.routeName: (ctx) => ProfileScreen(),
+        AddItemScreen.routeName: (ctx) => AddItemScreen(),
+        OwnShopScreen.routeName: (ctx) => OwnShopScreen(),
+        CreateShopScreen.routeName: (ctx) => CreateShopScreen(),
+        ChatScreen.routeName: (ctx) => ChatScreen(),
+        MainChatScreen.routeName: (ctx) => MainChatScreen(),
       },
     );
   }

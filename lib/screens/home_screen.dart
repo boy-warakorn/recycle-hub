@@ -6,7 +6,7 @@ import '../widgets/button/buttonHomeBox.dart';
 import '../widgets/shopItems/main_shop_items.dart';
 
 import './waste_info_screen.dart';
-import './main_shop_screen.dart';
+import 'shop/main_shop_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home';
@@ -76,10 +76,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: <Widget>[
                     Text(
                       'Manage',
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style: Theme.of(context).textTheme.headline2.copyWith(
+                            fontWeight: FontWeight.w500,
+                          ),
                     ),
                     Row(
                       children: <Widget>[
@@ -89,19 +88,19 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           firstChild: Text(
                             'hide',
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w500,
-                              color: Theme.of(context).primaryColor,
-                            ),
+                            style:
+                                Theme.of(context).textTheme.headline2.copyWith(
+                                      fontWeight: FontWeight.w500,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
                           ),
                           secondChild: Text(
                             'show',
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w500,
-                              color: Theme.of(context).primaryColor,
-                            ),
+                            style:
+                                Theme.of(context).textTheme.headline2.copyWith(
+                                      fontWeight: FontWeight.w500,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
                           ),
                           crossFadeState: _show
                               ? CrossFadeState.showFirst
@@ -235,10 +234,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: <Widget>[
                     Text(
                       'Suggested',
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style: Theme.of(context).textTheme.headline2.copyWith(
+                            fontWeight: FontWeight.w500,
+                          ),
                     ),
                     InkWell(
                       onTap: () => Navigator.of(context)
@@ -247,11 +245,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: <Widget>[
                           Text(
                             'Show All',
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w500,
-                              color: Theme.of(context).primaryColor,
-                            ),
+                            style:
+                                Theme.of(context).textTheme.headline2.copyWith(
+                                      fontWeight: FontWeight.w500,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
                           ),
                           Icon(
                             Icons.keyboard_arrow_right,

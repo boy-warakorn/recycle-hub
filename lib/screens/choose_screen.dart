@@ -29,26 +29,21 @@ class ChooseScreen extends StatelessWidget {
               ),
               child: Text(
                 "Welcome to Recycle hub",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).primaryColor,
-                ),
+                style: Theme.of(context).textTheme.headline2.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColor,
+                    ),
               ),
             ),
             Container(
               margin: EdgeInsets.only(
                 top: 10,
-                left: 25,
-                right: 25,
+                left: 20,
+                right: 20,
               ),
               child: Text(
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sociis mollis cursus qfend mauris libero massa id.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sociis mollis cursus qfend mauris libero massa id.",
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'SourceSansPro',
-                ),
+                style: Theme.of(context).textTheme.bodyText1,
                 textAlign: TextAlign.center,
               ),
             ),

@@ -28,11 +28,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               Text(
                 'Create Account',
-                style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.headline1,
               ),
             ],
           ),

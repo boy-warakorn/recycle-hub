@@ -23,10 +23,10 @@ class DrawerItem extends StatelessWidget {
           ),
           Text(
             title,
-            style: TextStyle(
-              fontSize: 24,
-              color: Theme.of(context).primaryColor,
-            ),
+            style: Theme.of(context).textTheme.headline1.copyWith(
+                  color: Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.normal,
+                ),
           ),
         ],
       ),

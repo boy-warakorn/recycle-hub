@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/shopItems/main_shop_items.dart';
-import '../widgets/drawer/drawer.dart';
-import '../widgets/shopItems/list_Item.dart';
+import '../../widgets/shopItems/main_shop_items.dart';
+import '../../widgets/drawer/drawer.dart';
+import '../../widgets/shopItems/list_Item.dart';
 
 enum ViewOptions {
   ListView,
