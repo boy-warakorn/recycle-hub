@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../screens/shop/own_shop_screen.dart';
 import '../../screens/home_screen.dart';
+import '../../screens/contact_us_screen.dart';
 import '../drawer/drawerItem.dart';
 import '../logo/logoText.dart';
 
@@ -103,6 +105,10 @@ class MainDrawer extends StatelessWidget {
                     size: 30,
                     color: Theme.of(context).primaryColor,
                   ),
+                  onTap: () {
+                    Navigator.of(context)
+                        .pushReplacementNamed(OwnShopScreen.routeName);
+                  },
                 ),
                 SizedBox(
                   height: 30,
@@ -130,6 +136,10 @@ class MainDrawer extends StatelessWidget {
                   height: 30,
                 ),
                 DrawerItem(
+                  onTap: () {
+                    Navigator.of(context)
+                        .pushReplacementNamed(ContactUsScreen.routeName);
+                  },
                   title: 'Contact us',
                   icon: Icon(
                     Icons.live_help,

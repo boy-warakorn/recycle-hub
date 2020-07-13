@@ -54,7 +54,7 @@ class ItemDetailScreen extends StatelessWidget {
           SliverAppBar(
             backgroundColor: Colors.white,
             iconTheme: IconThemeData(
-              color: Theme.of(context).primaryColor,
+              color: Colors.black,
             ),
             expandedHeight: 220,
             pinned: true,
