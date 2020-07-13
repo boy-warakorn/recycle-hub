@@ -65,6 +65,7 @@ class AuthScreen extends StatelessWidget {
                                   .headline3
                                   .copyWith(
                                     color: Colors.white,
+                                    fontSize: 12,
                                   ),
                             ),
                             SizedBox(

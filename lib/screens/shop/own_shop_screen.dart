@@ -172,7 +172,7 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
                           crossAxisCount: 2,
                           crossAxisSpacing: 15,
                           mainAxisSpacing: 15,
-                          childAspectRatio: 0.8,
+                          childAspectRatio: 0.68,
                         ),
                         itemCount: DUMMY_ITEM.length,
                         itemBuilder: (ctx, index) => MainShopItem(
@@ -183,7 +183,7 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
                           id: DUMMY_ITEM[index]['id'],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

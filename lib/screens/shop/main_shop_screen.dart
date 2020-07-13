@@ -66,9 +66,9 @@ class _MainShopScreenState extends State<MainShopScreen> {
           ? Row(
               children: <Widget>[
                 IconButton(
-                  icon: Icon(Icons.menu),
+                  icon: Icon(Icons.keyboard_arrow_left),
                   onPressed: () {
-                    _drawerKey.currentState.openDrawer();
+                    Navigator.pop(context);
                   },
                 ),
                 Text(
@@ -192,7 +192,8 @@ class _MainShopScreenState extends State<MainShopScreen> {
                           crossAxisCount: 2,
                           crossAxisSpacing: 15,
                           mainAxisSpacing: 15,
-                          childAspectRatio: 0.8,
+                          childAspectRatio: //0.8
+                              0.68,
                         ),
                         itemCount: DUMMY_ITEM.length,
                         itemBuilder: (ctx, index) => MainShopItem(

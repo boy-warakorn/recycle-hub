@@ -8,7 +8,7 @@ class LogoText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 165,
+      width: 175,
       child: Row(
         children: <Widget>[
           Text(

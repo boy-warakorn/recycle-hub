@@ -5,6 +5,7 @@ import '../widgets/logo/logoText.dart';
 import '../widgets/button/buttonHomeBox.dart';
 import '../widgets/shopItems/main_shop_items.dart';
 
+import 'shop/own_shop_screen.dart';
 import './waste_info_screen.dart';
 import 'shop/main_shop_screen.dart';
 
@@ -175,7 +176,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         text: "My Shop",
                         width: deviceWidth / 4,
                         height: 90,
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushReplacementNamed(OwnShopScreen.routeName);
+                        },
                       ),
                     ],
                   ),
@@ -199,7 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ButtonHomeBox(
                       height: 120,
                       width: deviceWidth / 2.4,
-                      text: 'Go to main shop',
+                      text: 'Main shop',
                       icon: Icon(
                         Icons.shopping_cart,
                         size: 70,
@@ -213,7 +217,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ButtonHomeBox(
                       height: 120,
                       width: deviceWidth / 2.4,
-                      text: 'Recycle waste ?',
+                      text: 'Recycle waste?',
                       icon: Icon(
                         Icons.help,
                         size: 70,

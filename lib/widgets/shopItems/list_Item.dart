@@ -50,7 +50,7 @@ class ListItem extends StatelessWidget {
             children: <Widget>[
               Container(
                 height: double.infinity,
-                width: 160,
+                width: 140,
                 child: Hero(
                   tag: id,
                   child: Image(
@@ -85,8 +85,8 @@ class ListItem extends StatelessWidget {
                         ),
                         Text(
                           !(shopName.length > 11)
-                              ? 'Shop name: $shopName'
-                              : 'Shop name: ${shopName.substring(0, 11)}...',
+                              ? 'Shop: $shopName'
+                              : 'Shop: ${shopName.substring(0, 11)}...',
                           style: Theme.of(context).textTheme.headline3.copyWith(
                                 color: Colors.black,
                                 fontWeight: FontWeight.normal,
@@ -148,7 +148,7 @@ class ListItem extends StatelessWidget {
                                 ),
                                 Container(
                                   padding: EdgeInsets.symmetric(
-                                    horizontal: 13,
+                                    horizontal: 10,
                                     vertical: 5,
                                   ),
                                   decoration: BoxDecoration(
@@ -158,7 +158,7 @@ class ListItem extends StatelessWidget {
                                     color: Theme.of(context).primaryColor,
                                   ),
                                   child: Text(
-                                    '$price Baht/$per',
+                                    '$price B/$per',
                                     style: Theme.of(context)
                                         .textTheme
                                         .headline3

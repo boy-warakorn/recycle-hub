@@ -82,26 +82,29 @@ class ItemDetailScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            title,
-                            style:
-                                Theme.of(context).textTheme.headline1.copyWith(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                          ),
-                          Text(
-                            '$price Baht/$per',
-                            style:
-                                Theme.of(context).textTheme.headline1.copyWith(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                          ),
-                        ],
+                      Text(
+                        title,
+                        style: Theme.of(context).textTheme.headline1.copyWith(
+                              color: Colors.black,
+                              fontWeight: FontWeight.normal,
+                            ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Divider(
+                        thickness: 2,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        'Price: $price Baht/$per',
+                        style: Theme.of(context).textTheme.headline1.copyWith(
+                              color: Colors.black,
+                              fontWeight: FontWeight.normal,
+                            ),
                       ),
                       SizedBox(
                         height: 15,

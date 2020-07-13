@@ -117,7 +117,7 @@ class MainShopItem extends StatelessWidget {
                         ),
                         child: Ink(
                           padding: EdgeInsets.only(
-                            left: 15,
+                            left: 10,
                           ),
                           child: Row(
                             children: <Widget>[
@@ -128,6 +128,7 @@ class MainShopItem extends StatelessWidget {
                                     .bodyText2
                                     .copyWith(
                                       color: Theme.of(context).primaryColor,
+                                      fontSize: 10,
                                     ),
                               ),
                               Icon(
