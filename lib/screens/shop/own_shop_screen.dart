@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../widgets/shopItems/main_shop_items.dart';
 import '../../widgets/drawer/drawer.dart';
 import '../../widgets/shopItems/list_Item.dart';
+
+import '../../models/user.dart';
+import '../auth/auth_screen.dart';
 
 enum ViewOptions {
   ListView,
@@ -24,6 +28,7 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
     final deviceHeight = MediaQuery.of(context).size.height;
 
     const DUMMY_ITEM = const [
@@ -149,62 +154,66 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
               ),
       ],
     );
-
-    return Scaffold(
-      key: _drawerKey,
-      drawer: MainDrawer(),
-      appBar: appbar,
-      body: _showGridView
-          ? Container(
-              margin: EdgeInsets.only(
-                left: 20,
-                top: 20,
-                right: 20,
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      height: deviceHeight - appbar.preferredSize.height - 83,
-                      child: GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 15,
-                          mainAxisSpacing: 15,
-                          childAspectRatio: 0.68,
-                        ),
-                        itemCount: DUMMY_ITEM.length,
-                        itemBuilder: (ctx, index) => MainShopItem(
-                          assetPath: DUMMY_ITEM[index]['assetPath'],
-                          per: DUMMY_ITEM[index]['per'],
-                          price: DUMMY_ITEM[index]['price'],
-                          title: DUMMY_ITEM[index]['title'],
-                          id: DUMMY_ITEM[index]['id'],
+    if (user != null) {
+      return Scaffold(
+        key: _drawerKey,
+        drawer: MainDrawer(),
+        appBar: appbar,
+        body: _showGridView
+            ? Container(
+                margin: EdgeInsets.only(
+                  left: 20,
+                  top: 20,
+                  right: 20,
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        height: deviceHeight - appbar.preferredSize.height - 83,
+                        child: GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 15,
+                            mainAxisSpacing: 15,
+                            childAspectRatio: 0.68,
+                          ),
+                          itemCount: DUMMY_ITEM.length,
+                          itemBuilder: (ctx, index) => MainShopItem(
+                            assetPath: DUMMY_ITEM[index]['assetPath'],
+                            per: DUMMY_ITEM[index]['per'],
+                            price: DUMMY_ITEM[index]['price'],
+                            title: DUMMY_ITEM[index]['title'],
+                            id: DUMMY_ITEM[index]['id'],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
+                ),
+              )
+            : Container(
+                margin: EdgeInsets.only(
+                  top: 5,
+                ),
+                child: ListView.builder(
+                  itemCount: DUMMY_ITEM.length,
+                  itemBuilder: (ctx, index) => ListItem(
+                    assetPath: DUMMY_ITEM[index]['assetPath'],
+                    per: DUMMY_ITEM[index]['per'],
+                    price: DUMMY_ITEM[index]['price'],
+                    title: DUMMY_ITEM[index]['title'],
+                    id: DUMMY_ITEM[index]['id'],
+                    shopName: DUMMY_ITEM[index]['shopName'],
+                    isOwnShop: true,
+                  ),
                 ),
               ),
-            )
-          : Container(
-              margin: EdgeInsets.only(
-                top: 5,
-              ),
-              child: ListView.builder(
-                itemCount: DUMMY_ITEM.length,
-                itemBuilder: (ctx, index) => ListItem(
-                  assetPath: DUMMY_ITEM[index]['assetPath'],
-                  per: DUMMY_ITEM[index]['per'],
-                  price: DUMMY_ITEM[index]['price'],
-                  title: DUMMY_ITEM[index]['title'],
-                  id: DUMMY_ITEM[index]['id'],
-                  shopName: DUMMY_ITEM[index]['shopName'],
-                  isOwnShop: true,
-                ),
-              ),
-            ),
-    );
+      );
+    } else {
+      return AuthScreen();
+    }
   }
 }

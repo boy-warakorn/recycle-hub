@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/drawer/drawer.dart';
 import '../widgets/logo/logoText.dart';
 import '../widgets/button/buttonHomeBox.dart';
 import '../widgets/shopItems/main_shop_items.dart';
 
+import '../models/user.dart';
+
+import 'auth/auth_screen.dart';
 import 'shop/own_shop_screen.dart';
 import './waste_info_screen.dart';
 import 'shop/main_shop_screen.dart';
@@ -27,26 +31,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const DUMMY_ITEM = const [
-      {
-        'id': '1',
-        'title': 'Bottle',
-        'price': '50',
-        "per": 'Kg',
-        'assetPath': 'assets/images/bottle_mockup.jpg',
-      },
-      {
-        'id': '2',
-        'title': 'Card board',
-        'price': '50',
-        "per": 'Kg',
-        'assetPath': 'assets/images/cardboard_mockup.png',
-      },
-    ];
-
+    final user = Provider.of<User>(context);
     final deviceWidth = MediaQuery.of(context).size.width;
-    return SafeArea(
-      child: Scaffold(
+
+    if (user != null) {
+      return Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
         drawer: MainDrawer(),
         appBar: AppBar(
@@ -294,7 +283,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-      ),
-    );
+      );
+    } else {
+      return AuthScreen();
+    }
   }
 }

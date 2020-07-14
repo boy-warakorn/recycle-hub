@@ -1,12 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../screens/shop/own_shop_screen.dart';
 import '../../screens/home_screen.dart';
 import '../../screens/contact_us_screen.dart';
 import '../drawer/drawerItem.dart';
 import '../logo/logoText.dart';
+import '../../models/user.dart';
 
-class MainDrawer extends StatelessWidget {
+class MainDrawer extends StatefulWidget {
+  @override
+  _MainDrawerState createState() => _MainDrawerState();
+}
+
+class _MainDrawerState extends State<MainDrawer> {
+  var info;
+  var firstname;
+  var lastname;
+
+  fetchUserData() async {
+    final user = Provider.of<User>(context);
+    info =
+        await Firestore.instance.collection('users').document(user.uid).get();
+    setState(() {
+      firstname = info['firstname'];
+      lastname = info['lastname'];
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    fetchUserData();
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
@@ -65,12 +96,18 @@ class MainDrawer extends StatelessWidget {
                       color: Colors.white,
                       thickness: 2,
                     ),
-                    Text(
-                      'Warakorn Chantranupong.',
-                      style: Theme.of(context).textTheme.headline3.copyWith(
-                            color: Colors.white,
+                    firstname != null
+                        ? Text(
+                            "$firstname $lastname",
+                            style:
+                                Theme.of(context).textTheme.headline3.copyWith(
+                                      color: Colors.white,
+                                    ),
+                          )
+                        : SpinKitWave(
+                            color: Colors.grey,
+                            size: 24,
                           ),
-                    ),
                   ],
                 ),
               ),
@@ -94,6 +131,17 @@ class MainDrawer extends StatelessWidget {
                     Navigator.of(context)
                         .pushReplacementNamed(HomeScreen.routeName);
                   },
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                DrawerItem(
+                  title: 'Chat',
+                  icon: Icon(
+                    Icons.message,
+                    size: 30,
+                    color: Theme.of(context).primaryColor,
+                  ),
                 ),
                 SizedBox(
                   height: 30,
@@ -125,9 +173,12 @@ class MainDrawer extends StatelessWidget {
                   height: 30,
                 ),
                 DrawerItem(
-                  title: 'Chat',
+                  onTap: () {
+                    Navigator.of(context).pushNamed(ContactUsScreen.routeName);
+                  },
+                  title: 'Contact us',
                   icon: Icon(
-                    Icons.message,
+                    Icons.live_help,
                     size: 30,
                     color: Theme.of(context).primaryColor,
                   ),
@@ -136,16 +187,15 @@ class MainDrawer extends StatelessWidget {
                   height: 30,
                 ),
                 DrawerItem(
-                  onTap: () {
-                    Navigator.of(context)
-                        .pushReplacementNamed(ContactUsScreen.routeName);
-                  },
-                  title: 'Contact us',
+                  title: 'Sign out',
                   icon: Icon(
-                    Icons.live_help,
+                    Icons.exit_to_app,
                     size: 30,
                     color: Theme.of(context).primaryColor,
                   ),
+                  onTap: () {
+                    FirebaseAuth.instance.signOut();
+                  },
                 ),
               ],
             ),
