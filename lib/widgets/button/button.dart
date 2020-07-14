@@ -18,7 +18,7 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     if (child == null) {
       return RaisedButton(
-        elevation: 10,
+        elevation: 5,
         onPressed: onClick,
         color: buttonColor,
         shape: RoundedRectangleBorder(
@@ -38,7 +38,7 @@ class Button extends StatelessWidget {
       );
     } else {
       return RaisedButton(
-        elevation: 10,
+        elevation: 5,
         onPressed: onClick,
         color: buttonColor,
         disabledColor: Theme.of(context).primaryColor,

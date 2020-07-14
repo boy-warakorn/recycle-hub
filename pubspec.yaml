@@ -23,6 +23,8 @@ dependencies:
   firebase_auth: ^0.16.1
   provider: ^4.3.1
   flutter_spinkit: ^4.1.2+1
+  image_picker: ^0.6.7+4
+  firebase_storage: ^3.1.6
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -52,6 +54,7 @@ flutter:
     - assets/images/recycle_waste_2.png
     - assets/images/createShop.png
     - assets/images/resize-contact-us.png
+    - assets/images/image_preview.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -1,12 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../widgets/shopItems/main_shop_items.dart';
 import '../../widgets/drawer/drawer.dart';
 import '../../widgets/shopItems/list_Item.dart';
+import '../../widgets/button/buttonWithIcon.dart';
 
 import '../../models/user.dart';
 import '../auth/auth_screen.dart';
+
+import '../../screens/shop/add_item_screen.dart';
 
 enum ViewOptions {
   ListView,
@@ -198,19 +203,56 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
                 margin: EdgeInsets.only(
                   top: 5,
                 ),
-                child: ListView.builder(
-                  itemCount: DUMMY_ITEM.length,
-                  itemBuilder: (ctx, index) => ListItem(
-                    assetPath: DUMMY_ITEM[index]['assetPath'],
-                    per: DUMMY_ITEM[index]['per'],
-                    price: DUMMY_ITEM[index]['price'],
-                    title: DUMMY_ITEM[index]['title'],
-                    id: DUMMY_ITEM[index]['id'],
-                    shopName: DUMMY_ITEM[index]['shopName'],
-                    isOwnShop: true,
-                  ),
-                ),
+                child: StreamBuilder(
+                    stream: Firestore.instance
+                        .collection('items')
+                        .document(user.uid)
+                        .collection('itemUser')
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(
+                          child: SpinKitCircle(
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        );
+                      }
+                      if (snapshot.hasData &&
+                          snapshot.data.documents.length > 0) {
+                        final itemDocs = snapshot.data.documents;
+                        // print(snapshot.data.documents[0]['itemName']);
+                        return ListView.builder(
+                          itemCount: itemDocs.length,
+                          itemBuilder: (ctx, index) => ListItem(
+                            assetPath: itemDocs[index]['itemImagePath'],
+                            per: itemDocs[index]['itemUnit'],
+                            price: itemDocs[index]['itemPrice'],
+                            title: itemDocs[index]['itemName'],
+                            id: itemDocs[index]['itemId'],
+                            shopName: "Test",
+                            isOwnShop: true,
+                          ),
+                        );
+                      }
+                      return Center(
+                        child: Text(
+                          'Please insert item first.',
+                          style: Theme.of(context).textTheme.headline2,
+                        ),
+                      );
+                    }),
               ),
+        floatingActionButton: ButtonWithIcon(
+          text: 'Add item',
+          icon: Icon(
+            Icons.add_box,
+            size: 26,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.of(context).pushNamed(AddItemScreen.routeName);
+          },
+        ),
       );
     } else {
       return AuthScreen();

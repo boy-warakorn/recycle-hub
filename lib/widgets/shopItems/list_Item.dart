@@ -55,9 +55,11 @@ class ListItem extends StatelessWidget {
                   tag: id,
                   child: Image(
                     fit: BoxFit.cover,
-                    image: AssetImage(
-                      assetPath,
-                    ),
+                    image: isOwnShop
+                        ? NetworkImage(assetPath)
+                        : AssetImage(
+                            assetPath,
+                          ),
                   ),
                 ),
               ),
