@@ -80,6 +80,11 @@ class _MyAppState extends State<MyApp> {
               color: Colors.white,
               fontWeight: FontWeight.w400,
             ),
+            headline4: TextStyle(
+              fontSize: 14,
+              fontFamily: 'Montserrat',
+              color: Colors.black,
+            ),
           ),
           accentColor: Color(0xFF94D3AC),
           fontFamily: 'Montserrat',

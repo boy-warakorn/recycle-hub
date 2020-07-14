@@ -11,6 +11,7 @@ import '../models/user.dart';
 import 'auth/auth_screen.dart';
 import 'shop/own_shop_screen.dart';
 import './waste_info_screen.dart';
+import './chat/main_chat_screen.dart';
 import 'shop/main_shop_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -143,7 +144,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         text: "Chats",
                         width: deviceWidth / 4,
                         height: 90,
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(MainChatScreen.routeName);
+                        },
                       ),
                       ButtonHomeBox(
                         icon: Icon(
