@@ -17,11 +17,7 @@ class ItemService {
   ) async {
     try {
       var itemId;
-      final refItem = Firestore.instance
-          .collection('items')
-          .document(uid)
-          .collection('itemUser')
-          .document();
+      final refItem = Firestore.instance.collection('items').document();
 
       //for getting id of item
       await refItem.get().then(
@@ -38,6 +34,7 @@ class ItemService {
       final url = await ref.getDownloadURL();
 
       refItem.setData({
+        'userId': uid,
         'itemId': itemId,
         'itemName': itemName,
         'itemPrice': itemPrice,

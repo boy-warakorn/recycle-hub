@@ -10,6 +10,7 @@ class MainShopItem extends StatelessWidget {
   final String id;
   final double width;
   final double height;
+  final bool isNetwork;
 
   MainShopItem({
     this.title,
@@ -19,6 +20,7 @@ class MainShopItem extends StatelessWidget {
     this.id,
     this.height = double.infinity,
     this.width = double.infinity,
+    this.isNetwork = false,
   });
 
   @override
@@ -63,9 +65,13 @@ class MainShopItem extends StatelessWidget {
                     tag: id,
                     child: Image(
                       fit: BoxFit.cover,
-                      image: AssetImage(
-                        assetPath,
-                      ),
+                      image: !isNetwork
+                          ? AssetImage(
+                              assetPath,
+                            )
+                          : NetworkImage(
+                              assetPath,
+                            ),
                     ),
                   ),
                 ),

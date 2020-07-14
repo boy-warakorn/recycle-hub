@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../widgets/shopItems/main_shop_items.dart';
 import '../../widgets/drawer/drawer.dart';
@@ -30,39 +32,6 @@ class _MainShopScreenState extends State<MainShopScreen> {
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
     final deviceHeight = MediaQuery.of(context).size.height;
-
-    const DUMMY_ITEM = const [
-      {
-        'id': '1',
-        'title': 'Bottle',
-        'price': '50',
-        "per": 'Kg',
-        'assetPath': 'assets/images/bottle_mockup.jpg',
-        'shopName': 'testNumberOne',
-        'detail':
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis mollis cursus pharetra dictumst mus. Mauris consectetur placerat dignissim morbi lorem ',
-      },
-      {
-        'id': '2',
-        'title': 'Card board',
-        'price': '30',
-        "per": 'Kg',
-        'assetPath': 'assets/images/cardboard_mockup.png',
-        'shopName': 'testNumberTwo',
-        'detail':
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis mollis cursus pharetra dictumst mus. Mauris consectetur placerat dignissim morbi lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis mollis cursus pharetra dictumst mus. Mauris consectetur placerat dignissim morbi lorem '
-      },
-      {
-        'id': '3',
-        'title': 'Newspaper',
-        'price': '100',
-        "per": 'Kg',
-        'assetPath': 'assets/images/newspaper_mockup.png',
-        'shopName': 'testNumberThree',
-        'detail':
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis mollis cursus pharetra dictumst mus. Mauris consectetur placerat dignissim morbi lorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis mollis cursus pharetra dictumst mus. Mauris consectetur placerat dignissim morbi lorem '
-      },
-    ];
 
     AppBar appbar = AppBar(
       titleSpacing: 0,
@@ -192,24 +161,48 @@ class _MainShopScreenState extends State<MainShopScreen> {
                     children: <Widget>[
                       Container(
                         height: deviceHeight - appbar.preferredSize.height - 83,
-                        child: GridView.builder(
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 15,
-                            mainAxisSpacing: 15,
-                            childAspectRatio: //0.8
-                                0.68,
-                          ),
-                          itemCount: DUMMY_ITEM.length,
-                          itemBuilder: (ctx, index) => MainShopItem(
-                            assetPath: DUMMY_ITEM[index]['assetPath'],
-                            per: DUMMY_ITEM[index]['per'],
-                            price: DUMMY_ITEM[index]['price'],
-                            title: DUMMY_ITEM[index]['title'],
-                            id: DUMMY_ITEM[index]['id'],
-                          ),
-                        ),
+                        child: StreamBuilder(
+                            stream: Firestore.instance
+                                .collection('items')
+                                .snapshots(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return Center(
+                                  child: SpinKitCircle(
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                );
+                              } else if (snapshot.hasData &&
+                                  snapshot.data.documents.length > 0) {
+                                final item = snapshot.data.documents;
+                                return GridView.builder(
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 15,
+                                    mainAxisSpacing: 15,
+                                    childAspectRatio: //0.8
+                                        0.68,
+                                  ),
+                                  itemCount: item.length,
+                                  itemBuilder: (ctx, index) => MainShopItem(
+                                    assetPath: item[index]['itemImagePath'],
+                                    per: item[index]['itemUnit'],
+                                    price: item[index]['itemPrice'],
+                                    title: item[index]['itemName'],
+                                    id: item[index]['userId'],
+                                    isNetwork: true,
+                                  ),
+                                );
+                              }
+                              return Center(
+                                child: Text(
+                                  'No items right now!',
+                                  style: Theme.of(context).textTheme.headline2,
+                                ),
+                              );
+                            }),
                       )
                     ],
                   ),
@@ -219,17 +212,41 @@ class _MainShopScreenState extends State<MainShopScreen> {
                 margin: EdgeInsets.only(
                   top: 5,
                 ),
-                child: ListView.builder(
-                  itemCount: DUMMY_ITEM.length,
-                  itemBuilder: (ctx, index) => ListItem(
-                    assetPath: DUMMY_ITEM[index]['assetPath'],
-                    per: DUMMY_ITEM[index]['per'],
-                    price: DUMMY_ITEM[index]['price'],
-                    title: DUMMY_ITEM[index]['title'],
-                    id: DUMMY_ITEM[index]['id'],
-                    shopName: DUMMY_ITEM[index]['shopName'],
-                  ),
-                ),
+                child: StreamBuilder(
+                    stream: Firestore.instance.collection('items').snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(
+                          child: SpinKitCircle(
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        );
+                      } else if (snapshot.hasData &&
+                          snapshot.data.documents.length > 0) {
+                        if (snapshot.hasData &&
+                            snapshot.data.documents.length > 0) {
+                          final itemDocs = snapshot.data.documents;
+                          return ListView.builder(
+                            itemCount: itemDocs.length,
+                            itemBuilder: (ctx, index) => ListItem(
+                              assetPath: itemDocs[index]['itemImagePath'],
+                              per: itemDocs[index]['itemUnit'],
+                              price: itemDocs[index]['itemPrice'],
+                              title: itemDocs[index]['itemName'],
+                              id: itemDocs[index]['itemId'],
+                              shopName: "Test",
+                              isNetwork: true,
+                            ),
+                          );
+                        }
+                      }
+                      return Center(
+                        child: Text(
+                          'No items right now!',
+                          style: Theme.of(context).textTheme.headline2,
+                        ),
+                      );
+                    }),
               ),
       );
     } else {

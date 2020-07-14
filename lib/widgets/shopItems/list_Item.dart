@@ -10,6 +10,7 @@ class ListItem extends StatelessWidget {
   final String per;
   final String price;
   final bool isOwnShop;
+  final bool isNetwork;
 
   ListItem({
     this.title,
@@ -19,6 +20,7 @@ class ListItem extends StatelessWidget {
     this.per,
     this.price,
     this.isOwnShop = false,
+    this.isNetwork = false,
   });
 
   @override
@@ -55,7 +57,7 @@ class ListItem extends StatelessWidget {
                   tag: id,
                   child: Image(
                     fit: BoxFit.cover,
-                    image: isOwnShop
+                    image: isNetwork
                         ? NetworkImage(assetPath)
                         : AssetImage(
                             assetPath,

@@ -36,19 +36,6 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
     final user = Provider.of<User>(context);
     final deviceHeight = MediaQuery.of(context).size.height;
 
-    const DUMMY_ITEM = const [
-      {
-        'id': '1',
-        'title': 'Bottle',
-        'price': '50',
-        "per": 'Kg',
-        'assetPath': 'assets/images/bottle_mockup.jpg',
-        'shopName': 'testNumberOne',
-        'detail':
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis mollis cursus pharetra dictumst mus. Mauris consectetur placerat dignissim morbi lorem ',
-      },
-    ];
-
     AppBar appbar = AppBar(
       titleSpacing: 0,
       automaticallyImplyLeading: false,
@@ -177,22 +164,51 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
                     children: <Widget>[
                       Container(
                         height: deviceHeight - appbar.preferredSize.height - 83,
-                        child: GridView.builder(
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 15,
-                            mainAxisSpacing: 15,
-                            childAspectRatio: 0.68,
-                          ),
-                          itemCount: DUMMY_ITEM.length,
-                          itemBuilder: (ctx, index) => MainShopItem(
-                            assetPath: DUMMY_ITEM[index]['assetPath'],
-                            per: DUMMY_ITEM[index]['per'],
-                            price: DUMMY_ITEM[index]['price'],
-                            title: DUMMY_ITEM[index]['title'],
-                            id: DUMMY_ITEM[index]['id'],
-                          ),
+                        child: StreamBuilder(
+                          stream: Firestore.instance
+                              .collection('items')
+                              .where("userId", isEqualTo: user.uid)
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            // print(snapshot.data.documents[0]['itemDetail']);
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return Center(
+                                child: SpinKitCircle(
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                              );
+                            }
+                            if (snapshot.hasData &&
+                                snapshot.data.documents.length > 0) {
+                              final itemDocs = snapshot.data.documents;
+                              // print(snapshot.data.documents[0]['itemName']);
+                              return GridView.builder(
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 15,
+                                  mainAxisSpacing: 15,
+                                  childAspectRatio: 0.68,
+                                ),
+                                itemCount: itemDocs.length,
+                                itemBuilder: (ctx, index) => MainShopItem(
+                                  assetPath: itemDocs[index]['itemImagePath'],
+                                  per: itemDocs[index]['itemUnit'],
+                                  price: itemDocs[index]['itemPrice'],
+                                  title: itemDocs[index]['itemName'],
+                                  id: itemDocs[index]['itemId'],
+                                  isNetwork: true,
+                                ),
+                              );
+                            }
+                            return Center(
+                              child: Text(
+                                'Please insert item first.',
+                                style: Theme.of(context).textTheme.headline2,
+                              ),
+                            );
+                          },
                         ),
                       ),
                     ],
@@ -204,43 +220,42 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
                   top: 5,
                 ),
                 child: StreamBuilder(
-                    stream: Firestore.instance
-                        .collection('items')
-                        .document(user.uid)
-                        .collection('itemUser')
-                        .snapshots(),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(
-                          child: SpinKitCircle(
-                            color: Theme.of(context).primaryColor,
-                          ),
-                        );
-                      }
-                      if (snapshot.hasData &&
-                          snapshot.data.documents.length > 0) {
-                        final itemDocs = snapshot.data.documents;
-                        // print(snapshot.data.documents[0]['itemName']);
-                        return ListView.builder(
-                          itemCount: itemDocs.length,
-                          itemBuilder: (ctx, index) => ListItem(
-                            assetPath: itemDocs[index]['itemImagePath'],
-                            per: itemDocs[index]['itemUnit'],
-                            price: itemDocs[index]['itemPrice'],
-                            title: itemDocs[index]['itemName'],
-                            id: itemDocs[index]['itemId'],
-                            shopName: "Test",
-                            isOwnShop: true,
-                          ),
-                        );
-                      }
+                  stream: Firestore.instance
+                      .collection('items')
+                      .where("userId", isEqualTo: user.uid)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
                       return Center(
-                        child: Text(
-                          'Please insert item first.',
-                          style: Theme.of(context).textTheme.headline2,
+                        child: SpinKitCircle(
+                          color: Theme.of(context).primaryColor,
                         ),
                       );
-                    }),
+                    }
+                    if (snapshot.hasData &&
+                        snapshot.data.documents.length > 0) {
+                      final itemDocs = snapshot.data.documents;
+                      return ListView.builder(
+                        itemCount: itemDocs.length,
+                        itemBuilder: (ctx, index) => ListItem(
+                          assetPath: itemDocs[index]['itemImagePath'],
+                          per: itemDocs[index]['itemUnit'],
+                          price: itemDocs[index]['itemPrice'],
+                          title: itemDocs[index]['itemName'],
+                          id: itemDocs[index]['itemId'],
+                          shopName: "Test",
+                          isOwnShop: true,
+                        ),
+                      );
+                    }
+                    return Center(
+                      child: Text(
+                        'Please insert item first.',
+                        style: Theme.of(context).textTheme.headline2,
+                      ),
+                    );
+                  },
+                ),
               ),
         floatingActionButton: ButtonWithIcon(
           text: 'Add item',
