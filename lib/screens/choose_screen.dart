@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../models/user.dart';
+import './auth/auth_screen.dart';
 
 import '../widgets/logo/logo.dart';
 import '../widgets/button/button.dart';
