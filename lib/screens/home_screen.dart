@@ -13,6 +13,7 @@ import 'shop/own_shop_screen.dart';
 import './waste_info_screen.dart';
 import './chat/main_chat_screen.dart';
 import 'shop/main_shop_screen.dart';
+import './profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home';
@@ -158,7 +159,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         text: "Profiles",
                         width: deviceWidth / 4,
                         height: 90,
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(ProfileScreen.routeName);
+                        },
                       ),
                       ButtonHomeBox(
                         icon: Icon(

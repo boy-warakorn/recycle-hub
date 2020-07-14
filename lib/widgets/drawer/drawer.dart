@@ -9,6 +9,7 @@ import '../../screens/shop/own_shop_screen.dart';
 import '../../screens/home_screen.dart';
 import '../../screens/contact_us_screen.dart';
 import '../../screens/chat/main_chat_screen.dart';
+import '../../screens/profile_screen.dart';
 import '../drawer/drawerItem.dart';
 import '../logo/logoText.dart';
 import '../../models/user.dart';
@@ -174,6 +175,9 @@ class _MainDrawerState extends State<MainDrawer> {
                     size: 30,
                     color: Theme.of(context).primaryColor,
                   ),
+                  onTap: () {
+                    Navigator.of(context).pushNamed(ProfileScreen.routeName);
+                  },
                 ),
                 SizedBox(
                   height: 30,
