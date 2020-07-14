@@ -15,7 +15,6 @@ import 'screens/shop/main_shop_screen.dart';
 import 'screens/shop/item_detail_screen.dart';
 import 'screens/shop/add_item_screen.dart';
 import 'screens/shop/own_shop_screen.dart';
-import 'screens/shop/create_shop_screen.dart';
 
 import 'screens/chat/chat_screen.dart';
 import 'screens/chat/main_chat_screen.dart';
@@ -111,7 +110,6 @@ class _MyAppState extends State<MyApp> {
           ProfileScreen.routeName: (ctx) => ProfileScreen(),
           AddItemScreen.routeName: (ctx) => AddItemScreen(),
           OwnShopScreen.routeName: (ctx) => OwnShopScreen(),
-          CreateShopScreen.routeName: (ctx) => CreateShopScreen(),
           ChatScreen.routeName: (ctx) => ChatScreen(),
           MainChatScreen.routeName: (ctx) => MainChatScreen(),
         },

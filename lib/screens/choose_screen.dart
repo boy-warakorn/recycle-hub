@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../widgets/logo/logo.dart';
 import '../widgets/button/button.dart';
 import '../screens/home_screen.dart';
-import '../screens/shop/create_shop_screen.dart';
 
 class ChooseScreen extends StatelessWidget {
   static const routeName = "/choose";
@@ -54,26 +53,15 @@ class ChooseScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Button(
-                  text: "Home",
-                  textColor: Theme.of(context).primaryColor,
-                  buttonColor: Color(0xffEFFCEF),
-                  onClick: () {
-                    Navigator.of(context)
-                        .pushReplacementNamed(HomeScreen.routeName);
-                  },
-                ),
                 Container(
-                  margin: EdgeInsets.only(
-                    left: 15,
-                  ),
+                  width: 200,
                   child: Button(
-                    text: "Create shop",
-                    textColor: Color(0xffEFFCEF),
-                    buttonColor: Theme.of(context).primaryColor,
+                    text: "Home",
+                    textColor: Theme.of(context).primaryColor,
+                    buttonColor: Color(0xffEFFCEF),
                     onClick: () {
                       Navigator.of(context)
-                          .pushReplacementNamed(CreateShopScreen.routeName);
+                          .pushReplacementNamed(HomeScreen.routeName);
                     },
                   ),
                 ),

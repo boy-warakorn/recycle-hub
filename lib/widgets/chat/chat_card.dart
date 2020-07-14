@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../screens/chat/chat_screen.dart';
 
 class ChatCard extends StatelessWidget {
   @override
@@ -13,7 +14,9 @@ class ChatCard extends StatelessWidget {
             ),
           ),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushNamed(ChatScreen.routeName);
+            },
             child: Ink(
               height: 80,
               width: double.infinity,
