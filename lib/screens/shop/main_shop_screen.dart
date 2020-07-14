@@ -160,7 +160,7 @@ class _MainShopScreenState extends State<MainShopScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Container(
-                        height: deviceHeight - appbar.preferredSize.height - 83,
+                        height: deviceHeight - appbar.preferredSize.height - 50,
                         child: StreamBuilder(
                             stream: Firestore.instance
                                 .collection('items')
@@ -182,8 +182,8 @@ class _MainShopScreenState extends State<MainShopScreen> {
                                     crossAxisCount: 2,
                                     crossAxisSpacing: 15,
                                     mainAxisSpacing: 15,
-                                    childAspectRatio: //0.8
-                                        0.68,
+                                    childAspectRatio: //0.68
+                                        0.8,
                                   ),
                                   itemCount: item.length,
                                   itemBuilder: (ctx, index) => MainShopItem(
@@ -191,7 +191,7 @@ class _MainShopScreenState extends State<MainShopScreen> {
                                     per: item[index]['itemUnit'],
                                     price: item[index]['itemPrice'],
                                     title: item[index]['itemName'],
-                                    id: item[index]['userId'],
+                                    id: item[index]['itemId'],
                                     isNetwork: true,
                                   ),
                                 );
@@ -234,7 +234,7 @@ class _MainShopScreenState extends State<MainShopScreen> {
                               price: itemDocs[index]['itemPrice'],
                               title: itemDocs[index]['itemName'],
                               id: itemDocs[index]['itemId'],
-                              shopName: "Test",
+                              shopName: itemDocs[index]['shopName'],
                               isNetwork: true,
                             ),
                           );

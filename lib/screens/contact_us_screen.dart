@@ -36,7 +36,6 @@ class ContactUsScreen extends StatelessWidget {
       ),
     );
 
-    final deviceHeight = MediaQuery.of(context).size.height;
     if (user != null) {
       return Scaffold(
         backgroundColor: Colors.white,

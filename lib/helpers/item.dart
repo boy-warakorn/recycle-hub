@@ -7,6 +7,7 @@ import 'dart:io';
 
 class ItemService {
   Future submitAddForm(
+    String shopName,
     String itemName,
     String itemPrice,
     String itemUnit,
@@ -34,6 +35,7 @@ class ItemService {
       final url = await ref.getDownloadURL();
 
       refItem.setData({
+        'shopName': shopName,
         'userId': uid,
         'itemId': itemId,
         'itemName': itemName,

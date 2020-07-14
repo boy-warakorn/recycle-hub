@@ -189,7 +189,8 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
                                   crossAxisCount: 2,
                                   crossAxisSpacing: 15,
                                   mainAxisSpacing: 15,
-                                  childAspectRatio: 0.68,
+                                  childAspectRatio: //0.68
+                                      0.8,
                                 ),
                                 itemCount: itemDocs.length,
                                 itemBuilder: (ctx, index) => MainShopItem(
@@ -236,17 +237,25 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
                         snapshot.data.documents.length > 0) {
                       final itemDocs = snapshot.data.documents;
                       return ListView.builder(
-                        itemCount: itemDocs.length,
-                        itemBuilder: (ctx, index) => ListItem(
-                          assetPath: itemDocs[index]['itemImagePath'],
-                          per: itemDocs[index]['itemUnit'],
-                          price: itemDocs[index]['itemPrice'],
-                          title: itemDocs[index]['itemName'],
-                          id: itemDocs[index]['itemId'],
-                          shopName: "Test",
-                          isOwnShop: true,
-                        ),
-                      );
+                          itemCount: itemDocs.length + 1,
+                          itemBuilder: (ctx, index) {
+                            if (index == itemDocs.length) {
+                              return SizedBox(
+                                height: 100,
+                              );
+                            } else {
+                              return ListItem(
+                                assetPath: itemDocs[index]['itemImagePath'],
+                                per: itemDocs[index]['itemUnit'],
+                                price: itemDocs[index]['itemPrice'],
+                                title: itemDocs[index]['itemName'],
+                                id: itemDocs[index]['itemId'],
+                                shopName: itemDocs[index]['shopName'],
+                                isNetwork: true,
+                                isOwnShop: true,
+                              );
+                            }
+                          });
                     }
                     return Center(
                       child: Text(

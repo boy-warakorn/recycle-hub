@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
@@ -60,8 +61,11 @@ class _AddFormState extends State<AddForm> {
         _isLoading = true;
       });
       _formKey.currentState.save();
-
+      final userInfo =
+          await Firestore.instance.collection('users').document(userId).get();
+      final userFirstname = userInfo['firstname'];
       await _item.submitAddForm(
+        userFirstname,
         itemName.trim(),
         itemPrice.trim(),
         itemUnit.trim(),
