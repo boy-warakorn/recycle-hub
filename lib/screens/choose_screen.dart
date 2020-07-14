@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../widgets/logo/logo.dart';
 import '../widgets/button/button.dart';
 import '../screens/home_screen.dart';
+import '../screens/shop/create_shop_screen.dart';
 
 class ChooseScreen extends StatelessWidget {
   static const routeName = "/choose";
@@ -70,7 +71,10 @@ class ChooseScreen extends StatelessWidget {
                     text: "Create shop",
                     textColor: Color(0xffEFFCEF),
                     buttonColor: Theme.of(context).primaryColor,
-                    onClick: () {},
+                    onClick: () {
+                      Navigator.of(context)
+                          .pushReplacementNamed(CreateShopScreen.routeName);
+                    },
                   ),
                 ),
               ],
