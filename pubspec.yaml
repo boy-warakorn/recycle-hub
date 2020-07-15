@@ -56,6 +56,7 @@ flutter:
     - assets/images/createShop.png
     - assets/images/resize-contact-us.png
     - assets/images/image_preview.png
+    - assets/images/swipe_left.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -39,7 +39,6 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
         .document(itemIdSearch)
         .get();
 
-    print(info);
     setState(() {
       title = info['itemName'];
       price = info['itemPrice'];

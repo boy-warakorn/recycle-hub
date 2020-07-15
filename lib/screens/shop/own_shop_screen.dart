@@ -7,6 +7,7 @@ import '../../widgets/shopItems/main_shop_items.dart';
 import '../../widgets/drawer/drawer.dart';
 import '../../widgets/shopItems/list_Item.dart';
 import '../../widgets/button/buttonWithIcon.dart';
+import '../../widgets/button/button.dart';
 
 import '../../models/user.dart';
 import '../auth/auth_screen.dart';
@@ -16,6 +17,7 @@ import '../../screens/shop/add_item_screen.dart';
 enum ViewOptions {
   ListView,
   GridView,
+  Help,
 }
 
 class OwnShopScreen extends StatefulWidget {
@@ -26,10 +28,64 @@ class OwnShopScreen extends StatefulWidget {
 }
 
 class _OwnShopScreenState extends State<OwnShopScreen> {
+  var searchText = '';
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
   bool _showGridView = false;
   bool _isSearch = false;
+
+  void _showAlert(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Row(
+          children: <Widget>[
+            Icon(Icons.help),
+            SizedBox(
+              width: 3,
+            ),
+            Text("Helps"),
+          ],
+        ),
+        backgroundColor: Colors.white,
+        content: Container(
+          height: 205,
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: 100,
+                width: 100,
+                child: Image(
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/images/swipe_left.png'),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text('Swipe left to delete items'),
+              SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Button(
+                    buttonColor: Theme.of(context).primaryColor,
+                    text: "Okay",
+                    onClick: () {
+                      Navigator.of(context).pop();
+                    },
+                    textColor: Colors.white,
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +115,11 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
             )
           : Container(
               child: TextField(
+                onChanged: (text) {
+                  setState(() {
+                    searchText = text;
+                  });
+                },
                 autofocus: true,
                 decoration: InputDecoration(
                   hintText: 'Search here',
@@ -81,6 +142,9 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
           onPressed: () {
             setState(() {
               _isSearch = !_isSearch;
+              if (!_isSearch) {
+                searchText = "";
+              }
             });
           },
           icon: !_isSearch
@@ -101,6 +165,8 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
                       _showGridView = true;
                     } else if (selectedValue == ViewOptions.ListView) {
                       _showGridView = false;
+                    } else if (selectedValue == ViewOptions.Help) {
+                      _showAlert(context);
                     }
                   });
                 },
@@ -138,6 +204,22 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
                       ],
                     ),
                     value: ViewOptions.ListView,
+                  ),
+                  PopupMenuItem(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text('Helps'),
+                        SizedBox(
+                          width: 3,
+                        ),
+                        Icon(
+                          Icons.help,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
+                    value: ViewOptions.Help,
                   ),
                 ],
               )
@@ -181,27 +263,47 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
                             }
                             if (snapshot.hasData &&
                                 snapshot.data.documents.length > 0) {
-                              final itemDocs = snapshot.data.documents;
-                              // print(snapshot.data.documents[0]['itemName']);
-                              return GridView.builder(
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 15,
-                                  mainAxisSpacing: 15,
-                                  childAspectRatio: //0.68
-                                      0.8,
-                                ),
-                                itemCount: itemDocs.length,
-                                itemBuilder: (ctx, index) => MainShopItem(
-                                  assetPath: itemDocs[index]['itemImagePath'],
-                                  per: itemDocs[index]['itemUnit'],
-                                  price: itemDocs[index]['itemPrice'],
-                                  title: itemDocs[index]['itemName'],
-                                  id: itemDocs[index]['itemId'],
-                                  isNetwork: true,
-                                ),
-                              );
+                              final List item = snapshot.data.documents;
+
+                              String search = searchText.toLowerCase();
+
+                              final renderItem = item
+                                  .where(
+                                    (element) => element['itemName']
+                                        .toLowerCase()
+                                        .contains(search),
+                                  )
+                                  .toList();
+
+                              return renderItem.length != 0
+                                  ? GridView.builder(
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        crossAxisSpacing: 15,
+                                        mainAxisSpacing: 15,
+                                        childAspectRatio: //0.68
+                                            0.8,
+                                      ),
+                                      itemCount: renderItem.length,
+                                      itemBuilder: (ctx, index) => MainShopItem(
+                                        assetPath: renderItem[index]
+                                            ['itemImagePath'],
+                                        per: renderItem[index]['itemUnit'],
+                                        price: renderItem[index]['itemPrice'],
+                                        title: renderItem[index]['itemName'],
+                                        id: renderItem[index]['itemId'],
+                                        isNetwork: true,
+                                      ),
+                                    )
+                                  : Center(
+                                      child: Text(
+                                        'No results found!',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline2,
+                                      ),
+                                    );
                             }
                             return Center(
                               child: Text(
@@ -235,27 +337,45 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
                     }
                     if (snapshot.hasData &&
                         snapshot.data.documents.length > 0) {
-                      final itemDocs = snapshot.data.documents;
-                      return ListView.builder(
-                          itemCount: itemDocs.length + 1,
-                          itemBuilder: (ctx, index) {
-                            if (index == itemDocs.length) {
-                              return SizedBox(
-                                height: 100,
-                              );
-                            } else {
-                              return ListItem(
-                                assetPath: itemDocs[index]['itemImagePath'],
-                                per: itemDocs[index]['itemUnit'],
-                                price: itemDocs[index]['itemPrice'],
-                                title: itemDocs[index]['itemName'],
-                                id: itemDocs[index]['itemId'],
-                                shopName: itemDocs[index]['shopName'],
-                                isNetwork: true,
-                                isOwnShop: true,
-                              );
-                            }
-                          });
+                      final List item = snapshot.data.documents;
+
+                      String search = searchText.toLowerCase();
+
+                      final renderItem = item
+                          .where(
+                            (element) => element['itemName']
+                                .toLowerCase()
+                                .contains(search),
+                          )
+                          .toList();
+                      return renderItem.length != 0
+                          ? ListView.builder(
+                              itemCount: renderItem.length + 1,
+                              itemBuilder: (ctx, index) {
+                                if (index == renderItem.length) {
+                                  return SizedBox(
+                                    height: 100,
+                                  );
+                                } else {
+                                  return ListItem(
+                                    assetPath: renderItem[index]
+                                        ['itemImagePath'],
+                                    per: renderItem[index]['itemUnit'],
+                                    price: renderItem[index]['itemPrice'],
+                                    title: renderItem[index]['itemName'],
+                                    id: renderItem[index]['itemId'],
+                                    shopName: renderItem[index]['shopName'],
+                                    isNetwork: true,
+                                    isOwnShop: true,
+                                  );
+                                }
+                              })
+                          : Center(
+                              child: Text(
+                                'No results found!',
+                                style: Theme.of(context).textTheme.headline2,
+                              ),
+                            );
                     }
                     return Center(
                       child: Text(
