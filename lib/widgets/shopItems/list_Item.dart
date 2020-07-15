@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:provider/provider.dart';
 
 import '../../screens/shop/item_detail_screen.dart';
 
@@ -33,6 +32,14 @@ class ListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     if (isOwnShop) {
       return Dismissible(
+        background: Container(
+          color: Colors.red,
+          child: Icon(
+            Icons.delete,
+            size: 36,
+            color: Colors.white,
+          ),
+        ),
         confirmDismiss: (DismissDirection direction) async {
           return await showDialog(
             context: context,
