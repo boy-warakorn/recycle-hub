@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 
 import '../button/button.dart';
 import '../../screens/auth/register_screen.dart';
@@ -62,8 +63,27 @@ class _LoginFormState extends State<LoginForm> {
       setState(() {
         _isLoading = false;
       });
+    } on PlatformException catch (err) {
+      var message = 'An error occurred, please check your credentials!';
+
+      if (err.message != null) {
+        message = err.message;
+      }
+      Scaffold.of(context).hideCurrentSnackBar();
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          backgroundColor: Theme.of(context).errorColor,
+        ),
+      );
+      setState(() {
+        _isLoading = false;
+      });
     } catch (err) {
       print(err);
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 

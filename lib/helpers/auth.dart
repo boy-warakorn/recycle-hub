@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../models/user.dart';
 
@@ -49,6 +50,19 @@ class AuthService {
       FirebaseUser user = authResult.user;
 
       return _userInfo(user);
+    } on PlatformException catch (err) {
+      var message = 'An error occurred, please check your credentials!';
+
+      if (err.message != null) {
+        message = err.message;
+      }
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          backgroundColor: Theme.of(context).errorColor,
+        ),
+      );
+      return true;
     } catch (err) {
       Scaffold.of(context).hideCurrentSnackBar();
       Scaffold.of(context).showSnackBar(
@@ -65,7 +79,7 @@ class AuthService {
           backgroundColor: Theme.of(context).errorColor,
         ),
       );
-      print(err);
+
       return null;
     }
   }

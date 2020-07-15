@@ -23,6 +23,7 @@ class MainShopScreen extends StatefulWidget {
 }
 
 class _MainShopScreenState extends State<MainShopScreen> {
+  var searchText = '';
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
   bool _showGridView = false;
@@ -56,9 +57,14 @@ class _MainShopScreenState extends State<MainShopScreen> {
             )
           : Container(
               child: TextField(
+                onChanged: (text) {
+                  setState(() {
+                    searchText = text;
+                  });
+                },
                 autofocus: true,
                 decoration: InputDecoration(
-                  hintText: 'Search here',
+                  hintText: 'Search item name here',
                   prefixIcon: Icon(
                     Icons.search,
                     color: Colors.white,
@@ -78,6 +84,9 @@ class _MainShopScreenState extends State<MainShopScreen> {
           onPressed: () {
             setState(() {
               _isSearch = !_isSearch;
+              if (!_isSearch) {
+                searchText = '';
+              }
             });
           },
           icon: !_isSearch
@@ -175,26 +184,47 @@ class _MainShopScreenState extends State<MainShopScreen> {
                                 );
                               } else if (snapshot.hasData &&
                                   snapshot.data.documents.length > 0) {
-                                final item = snapshot.data.documents;
-                                return GridView.builder(
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    crossAxisSpacing: 15,
-                                    mainAxisSpacing: 15,
-                                    childAspectRatio: //0.68
-                                        0.8,
-                                  ),
-                                  itemCount: item.length,
-                                  itemBuilder: (ctx, index) => MainShopItem(
-                                    assetPath: item[index]['itemImagePath'],
-                                    per: item[index]['itemUnit'],
-                                    price: item[index]['itemPrice'],
-                                    title: item[index]['itemName'],
-                                    id: item[index]['itemId'],
-                                    isNetwork: true,
-                                  ),
-                                );
+                                final List item = snapshot.data.documents;
+                                String search = searchText.toLowerCase();
+
+                                final renderItem = item
+                                    .where(
+                                      (element) => element['itemName']
+                                          .toLowerCase()
+                                          .contains(search),
+                                    )
+                                    .toList();
+
+                                return renderItem.length != 0
+                                    ? GridView.builder(
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 2,
+                                          crossAxisSpacing: 15,
+                                          mainAxisSpacing: 15,
+                                          childAspectRatio: //0.68
+                                              0.8,
+                                        ),
+                                        itemCount: renderItem.length,
+                                        itemBuilder: (ctx, index) =>
+                                            MainShopItem(
+                                          assetPath: renderItem[index]
+                                              ['itemImagePath'],
+                                          per: renderItem[index]['itemUnit'],
+                                          price: renderItem[index]['itemPrice'],
+                                          title: renderItem[index]['itemName'],
+                                          id: renderItem[index]['itemId'],
+                                          isNetwork: true,
+                                        ),
+                                      )
+                                    : Center(
+                                        child: Text(
+                                          'No results found!',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline2,
+                                        ),
+                                      );
                               }
                               return Center(
                                 child: Text(
@@ -225,19 +255,39 @@ class _MainShopScreenState extends State<MainShopScreen> {
                           snapshot.data.documents.length > 0) {
                         if (snapshot.hasData &&
                             snapshot.data.documents.length > 0) {
-                          final itemDocs = snapshot.data.documents;
-                          return ListView.builder(
-                            itemCount: itemDocs.length,
-                            itemBuilder: (ctx, index) => ListItem(
-                              assetPath: itemDocs[index]['itemImagePath'],
-                              per: itemDocs[index]['itemUnit'],
-                              price: itemDocs[index]['itemPrice'],
-                              title: itemDocs[index]['itemName'],
-                              id: itemDocs[index]['itemId'],
-                              shopName: itemDocs[index]['shopName'],
-                              isNetwork: true,
-                            ),
-                          );
+                          final List item = snapshot.data.documents;
+
+                          String search = searchText.toLowerCase();
+
+                          final renderItem = item
+                              .where(
+                                (element) => element['itemName']
+                                    .toLowerCase()
+                                    .contains(search),
+                              )
+                              .toList();
+                          return renderItem.length != 0
+                              ? ListView.builder(
+                                  itemCount: renderItem.length,
+                                  itemBuilder: (ctx, index) => ListItem(
+                                    assetPath: renderItem[index]
+                                        ['itemImagePath'],
+                                    per: renderItem[index]['itemUnit'],
+                                    price: renderItem[index]['itemPrice'],
+                                    title: renderItem[index]['itemName'],
+                                    id: renderItem[index]['itemId'],
+                                    shopName: renderItem[index]['shopName'],
+                                    isNetwork: true,
+                                  ),
+                                )
+                              : Center(
+                                  child: Text(
+                                    'No results found!',
+                                    style:
+                                        Theme.of(context).textTheme.headline2,
+                                  ),
+                                );
+                          ;
                         }
                       }
                       return Center(

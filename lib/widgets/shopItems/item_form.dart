@@ -9,12 +9,12 @@ import '../../helpers/item.dart';
 
 import '../button/button.dart';
 
-class AddForm extends StatefulWidget {
+class ItemForm extends StatefulWidget {
   @override
-  _AddFormState createState() => _AddFormState();
+  _ItemFormState createState() => _ItemFormState();
 }
 
-class _AddFormState extends State<AddForm> {
+class _ItemFormState extends State<ItemForm> {
   ItemService _item = ItemService();
   File _pickedImage;
   final _formKey = GlobalKey<FormState>();

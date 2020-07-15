@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/shopItems/add_form.dart';
+import '../../widgets/shopItems/item_form.dart';
 
 class AddItemScreen extends StatelessWidget {
   static const routeName = '/add-item';
@@ -45,7 +45,7 @@ class AddItemScreen extends StatelessWidget {
           margin: EdgeInsets.only(top: 30, left: 25, right: 25),
           child: ListView(
             children: <Widget>[
-              AddForm(),
+              ItemForm(),
             ],
           ),
         ),
