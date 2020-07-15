@@ -394,7 +394,10 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
             color: Colors.white,
           ),
           onPressed: () {
-            Navigator.of(context).pushNamed(AddItemScreen.routeName);
+            Navigator.of(context).pushNamed(
+              AddItemScreen.routeName,
+              arguments: [false, "asd"],
+            );
           },
         ),
       );

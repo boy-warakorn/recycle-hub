@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../../screens/shop/add_item_screen.dart';
 import '../../screens/shop/item_detail_screen.dart';
 
 class ListItem extends StatelessWidget {
@@ -163,24 +164,28 @@ class ListItem extends StatelessWidget {
                                 ),
                                 child: Row(
                                   children: <Widget>[
-                                    Container(
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: 13,
-                                        vertical: 5,
+                                    InkWell(
+                                      onTap: () =>
+                                          Navigator.of(context).pushNamed(
+                                        AddItemScreen.routeName,
+                                        arguments: [true, id],
                                       ),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                          10,
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 10,
+                                          vertical: 5,
                                         ),
-                                        color: Theme.of(context).primaryColor,
-                                      ),
-                                      child: Row(
-                                        children: <Widget>[
-                                          Row(
-                                            children: <Widget>[
-                                              InkWell(
-                                                onTap: () {},
-                                                child: Text(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                        child: Row(
+                                          children: <Widget>[
+                                            Row(
+                                              children: <Widget>[
+                                                Text(
                                                   'Edit',
                                                   style: Theme.of(context)
                                                       .textTheme
@@ -191,18 +196,18 @@ class ListItem extends StatelessWidget {
                                                             FontWeight.normal,
                                                       ),
                                                 ),
-                                              ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Icon(
-                                                Icons.settings,
-                                                color: Colors.white,
-                                                size: 20,
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Icon(
+                                                  Icons.settings,
+                                                  color: Colors.white,
+                                                  size: 20,
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                     SizedBox(

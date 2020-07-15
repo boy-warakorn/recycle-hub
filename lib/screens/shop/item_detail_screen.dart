@@ -87,38 +87,70 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          title,
-                          style: Theme.of(context).textTheme.headline1.copyWith(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal,
-                              ),
+                        Container(
+                          padding: EdgeInsets.all(
+                            10,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              10,
+                            ),
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          child: Text(
+                            title,
+                            style:
+                                Theme.of(context).textTheme.headline1.copyWith(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                          ),
                         ),
                         SizedBox(
                           height: 15,
                         ),
-                        Divider(
-                          thickness: 2,
-                          color: Colors.black,
+                        RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'Price:',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline1
+                                    .copyWith(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                              ),
+                              TextSpan(
+                                text: ' $price Baht/$per',
+                                style: Theme.of(context).textTheme.headline1,
+                              )
+                            ],
+                          ),
                         ),
                         SizedBox(
                           height: 15,
                         ),
-                        Text(
-                          'Price: $price Baht/$per',
-                          style: Theme.of(context).textTheme.headline1.copyWith(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal,
+                        RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'Seller:',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline1
+                                    .copyWith(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                               ),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          'Shop name: $shopName',
-                          style: Theme.of(context).textTheme.bodyText1.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
+                              TextSpan(
+                                text: ' $shopName',
+                                style: Theme.of(context).textTheme.headline1,
+                              )
+                            ],
+                          ),
                         ),
                         SizedBox(
                           height: 15,
@@ -142,7 +174,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                         ),
                         Text(
                           detail,
-                          style: Theme.of(context).textTheme.bodyText1,
+                          style: Theme.of(context).textTheme.headline3,
                         ),
                         SizedBox(
                           height: 15,
@@ -191,7 +223,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                         ),
                         Text(
                           detail,
-                          style: Theme.of(context).textTheme.bodyText1,
+                          style: Theme.of(context).textTheme.headline3,
                         ),
                       ],
                     ),

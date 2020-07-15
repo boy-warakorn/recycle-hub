@@ -6,6 +6,10 @@ class AddItemScreen extends StatelessWidget {
   static const routeName = '/add-item';
   @override
   Widget build(BuildContext context) {
+    List arguments = ModalRoute.of(context).settings.arguments;
+    final isEdit = arguments[0];
+    final id = arguments[1];
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -19,7 +23,7 @@ class AddItemScreen extends StatelessWidget {
               },
             ),
             Text(
-              'Add item',
+              !isEdit ? 'Add item' : 'Edit item',
               style: Theme.of(context).textTheme.headline1.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.normal,
@@ -45,7 +49,10 @@ class AddItemScreen extends StatelessWidget {
           margin: EdgeInsets.only(top: 30, left: 25, right: 25),
           child: ListView(
             children: <Widget>[
-              ItemForm(),
+              ItemForm(
+                isEdit: isEdit,
+                id: id,
+              ),
             ],
           ),
         ),
