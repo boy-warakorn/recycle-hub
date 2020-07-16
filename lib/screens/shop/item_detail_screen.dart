@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
+
+import '../../helpers/chat.dart';
+import '../../models/user.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -13,6 +17,8 @@ class ItemDetailScreen extends StatefulWidget {
 }
 
 class _ItemDetailScreenState extends State<ItemDetailScreen> {
+  var _isLoading = false;
+  ChatService chat = ChatService();
   var title;
   var price;
   var per;
@@ -20,6 +26,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
   var detail;
   var shopName;
   var itemId;
+  var userId;
   bool isInit = false;
 
   @override
@@ -30,6 +37,16 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
     } else {
       isInit = true;
     }
+  }
+
+  createChatHandler(userId, anotherUserId) async {
+    setState(() {
+      _isLoading = true;
+    });
+    await chat.createChatRoom(userId, anotherUserId);
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   fetchItemDetail() async {
@@ -47,12 +64,16 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
       detail = info['itemDetail'];
       itemId = info['itemId'];
       shopName = info['shopName'];
+      userId = info['userId'];
     });
   }
 
+  checkAlreadyChat(currentUserId) async {}
+
   @override
   Widget build(BuildContext context) {
-    if (shopName != null) {
+    final currentUserId = Provider.of<User>(context).uid;
+    if (shopName != null && !_isLoading) {
       return Scaffold(
         body: CustomScrollView(
           slivers: <Widget>[
@@ -124,7 +145,12 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                               ),
                               TextSpan(
                                 text: ' $price Baht/$per',
-                                style: Theme.of(context).textTheme.headline1,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline1
+                                    .copyWith(
+                                      fontWeight: FontWeight.w600,
+                                    ),
                               )
                             ],
                           ),
@@ -147,7 +173,12 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                               ),
                               TextSpan(
                                 text: ' $shopName',
-                                style: Theme.of(context).textTheme.headline1,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline1
+                                    .copyWith(
+                                      fontWeight: FontWeight.w600,
+                                    ),
                               )
                             ],
                           ),
@@ -233,15 +264,19 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
             ),
           ],
         ),
-        floatingActionButton: ButtonWithIcon(
-          text: 'Contact',
-          icon: Icon(
-            Icons.chat,
-            size: 26,
-            color: Colors.white,
-          ),
-          onPressed: () {},
-        ),
+        floatingActionButton: !(userId == currentUserId)
+            ? ButtonWithIcon(
+                text: 'Contact',
+                icon: Icon(
+                  Icons.chat,
+                  size: 26,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  createChatHandler(currentUserId, userId);
+                },
+              )
+            : null,
       );
     } else {
       return Scaffold(

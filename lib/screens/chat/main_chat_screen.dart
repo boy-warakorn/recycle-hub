@@ -1,5 +1,7 @@
 import 'package:csc_integrate_project/widgets/chat/chat_card.dart';
 import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../models/user.dart';
 import '../auth/auth_screen.dart';
@@ -95,14 +97,41 @@ class MainChatScreen extends StatelessWidget {
                     right: 20,
                     top: 25,
                   ),
-                  child: ListView(
-                    children: <Widget>[
-                      ChatCard(),
-                      ChatCard(),
-                      ChatCard(),
-                      ChatCard(),
-                    ],
-                  ),
+                  child: StreamBuilder(
+                      stream: Firestore.instance
+                          .collection("chatrooms")
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(
+                            child: SpinKitCircle(
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          );
+                        }
+                        if (snapshot.hasData &&
+                            snapshot.data.documents.length > 0) {
+                          List allChatroomDocs = snapshot.data.documents;
+                          final userId = user.uid;
+
+                          List chatrooms = allChatroomDocs.where((element) {
+                            if (element["users"][0] == userId ||
+                                element["users"][1] == userId) {
+                              return true;
+                            } else {
+                              return false;
+                            }
+                          }).toList();
+                          print(chatrooms[0]["chatRoomId"]);
+                          return ListView.builder(
+                            itemCount: chatrooms.length,
+                            itemBuilder: (context, index) => ChatCard(),
+                          );
+                        }
+                        return Text('eiei');
+                        // return ListView.builder(itemCount: ,itemBuilder: )
+                      }),
                 ),
               ),
             )

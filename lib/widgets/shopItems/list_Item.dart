@@ -95,6 +95,12 @@ class ListItem extends StatelessWidget {
             child: Ink(
               decoration: BoxDecoration(
                 border: Border(
+                  left: BorderSide(
+                    color: Colors.grey[300],
+                  ),
+                  right: BorderSide(
+                    color: Colors.grey[300],
+                  ),
                   top: BorderSide(
                     color: Colors.grey[300],
                   ),
@@ -293,6 +299,12 @@ class ListItem extends StatelessWidget {
           child: Ink(
             decoration: BoxDecoration(
               border: Border(
+                left: BorderSide(
+                  color: Colors.grey[300],
+                ),
+                right: BorderSide(
+                  color: Colors.grey[300],
+                ),
                 top: BorderSide(
                   color: Colors.grey[300],
                 ),

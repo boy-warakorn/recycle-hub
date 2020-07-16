@@ -83,4 +83,6 @@ class AuthService {
       return null;
     }
   }
+
+  Future getFirstName(userId) async {}
 }
