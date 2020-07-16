@@ -1,3 +1,4 @@
+import 'package:csc_integrate_project/helpers/auth.dart';
 import 'package:csc_integrate_project/widgets/chat/chat_card.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 
 class MainChatScreen extends StatelessWidget {
   static const routeName = '/mainChat';
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
@@ -100,6 +102,7 @@ class MainChatScreen extends StatelessWidget {
                   child: StreamBuilder(
                       stream: Firestore.instance
                           .collection("chatrooms")
+                          .orderBy("updatedAt", descending: true)
                           .snapshots(),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
@@ -123,10 +126,22 @@ class MainChatScreen extends StatelessWidget {
                               return false;
                             }
                           }).toList();
-                          print(chatrooms[0]["chatRoomId"]);
+
                           return ListView.builder(
                             itemCount: chatrooms.length,
-                            itemBuilder: (context, index) => ChatCard(),
+                            itemBuilder: (context, index) => ChatCard(
+                              latestMessage:
+                                  chatrooms[index]["latestMessage"] == null
+                                      ? "Start chat >>"
+                                      : chatrooms[index]["latestMessage"],
+                              userName: chatrooms[index]["userName"] == null
+                                  ? "Start send message......"
+                                  : chatrooms[index]["userName"],
+                              when: chatrooms[index]["time"] == null
+                                  ? "--:--"
+                                  : chatrooms[index]["time"],
+                              chatRoomId: chatrooms[index]["chatRoomId"],
+                            ),
                           );
                         }
                         return Text('eiei');

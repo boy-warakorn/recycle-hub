@@ -84,5 +84,9 @@ class AuthService {
     }
   }
 
-  Future getFirstName(userId) async {}
+  getFirstName(userId) async {
+    final userData =
+        await Firestore.instance.collection("users").document(userId).get();
+    return userData;
+  }
 }

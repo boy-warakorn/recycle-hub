@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import '../../screens/chat/chat_screen.dart';
 
 class ChatCard extends StatelessWidget {
+  final chatRoomId;
+  final userName;
+  final latestMessage;
+  final when;
+
+  ChatCard({this.chatRoomId, this.userName, this.latestMessage, this.when});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -15,7 +22,10 @@ class ChatCard extends StatelessWidget {
           ),
           child: InkWell(
             onTap: () {
-              Navigator.of(context).pushNamed(ChatScreen.routeName);
+              Navigator.of(context).pushNamed(
+                ChatScreen.routeName,
+                arguments: chatRoomId,
+              );
             },
             child: Ink(
               height: 80,
@@ -31,11 +41,11 @@ class ChatCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          'Warakorn st.',
+                          userName,
                           style: Theme.of(context).textTheme.headline4,
                         ),
                         Text(
-                          '10.00 AM',
+                          '$when AM',
                           style: TextStyle(
                             color: Colors.black,
                             fontFamily: 'Montserrat',
@@ -48,7 +58,9 @@ class ChatCard extends StatelessWidget {
                       height: 7,
                     ),
                     Text(
-                      'Hello. I want to sell 10kg of card...',
+                      latestMessage.length > 30
+                          ? "${latestMessage.substring(0, 31)}.."
+                          : latestMessage,
                       style: Theme.of(context).textTheme.headline4.copyWith(
                             color: Color(0xFF464646),
                           ),

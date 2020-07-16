@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 class MessageCard extends StatelessWidget {
   final bool isMe;
   final Key key;
+  final String message;
+  final String userName;
 
-  MessageCard({this.isMe, this.key});
+  MessageCard({this.isMe, this.key, this.message, this.userName});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class MessageCard extends StatelessWidget {
               width: 170,
               padding: EdgeInsets.symmetric(
                 vertical: 10,
-                horizontal: 16,
+                horizontal: 14,
               ),
               margin: EdgeInsets.symmetric(
                 vertical: 12,
@@ -55,15 +57,15 @@ class MessageCard extends StatelessWidget {
                     isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    'It\'s me',
+                    userName,
                     style: Theme.of(context).textTheme.bodyText1.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                   ),
                   Text(
-                    'asdaddaadasdasdasdsdaasd',
+                    message,
                     style: Theme.of(context).textTheme.bodyText1,
-                    textAlign: TextAlign.end,
+                    textAlign: isMe ? TextAlign.end : TextAlign.start,
                   ),
                 ],
               ),

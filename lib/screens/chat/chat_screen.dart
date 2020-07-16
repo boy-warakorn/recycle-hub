@@ -1,27 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../helpers/chat.dart';
 
 import '../../models/user.dart';
 import '../auth/auth_screen.dart';
 
 import '../../widgets/chat/messages.dart';
 
-class ChatScreen extends StatelessWidget {
+class ChatScreen extends StatefulWidget {
   static const routeName = '/chat';
+
+  @override
+  _ChatScreenState createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+  ChatService _chat = ChatService();
+  var _controller = TextEditingController();
+
+  var _isLoading = false;
+
+  trySendMessage(userId, chatRoomId) async {
+    setState(() {
+      _isLoading = true;
+    });
+    await _chat.sendMessage(userId, chatRoomId, _controller.text, _controller);
+    _controller.clear();
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final chatroomId = ModalRoute.of(context).settings.arguments;
+
     final user = Provider.of<User>(context);
     if (user != null) {
       return Scaffold(
         appBar: AppBar(
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.call,
-              ),
-              onPressed: () {},
-            )
-          ],
           automaticallyImplyLeading: false,
           titleSpacing: 0,
           elevation: 0,
@@ -51,17 +69,28 @@ class ChatScreen extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Expanded(
-                child: Messages(),
+                child: Messages(
+                  chatRoomId: chatroomId,
+                  currentUserId: user.uid,
+                ),
               ),
               TextField(
+                controller: _controller,
                 style: Theme.of(context).textTheme.headline3.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.normal,
                     ),
                 decoration: InputDecoration(
-                  suffixIcon: Icon(
-                    Icons.send,
-                    color: Colors.white,
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      Icons.send,
+                      color: Colors.white,
+                    ),
+                    onPressed: !_isLoading
+                        ? () {
+                            trySendMessage(user.uid, chatroomId);
+                          }
+                        : null,
                   ),
                   fillColor: Theme.of(context).primaryColor,
                   filled: true,
