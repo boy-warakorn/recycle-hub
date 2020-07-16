@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DrawerItem extends StatelessWidget {
   final String title;
   final Icon icon;
   final Function onTap;
+  final bool isAwesome;
+  final FaIcon faIcon;
 
   DrawerItem({
     this.title,
     this.icon,
     this.onTap,
+    this.isAwesome = false,
+    this.faIcon,
   });
 
   @override
@@ -17,7 +22,7 @@ class DrawerItem extends StatelessWidget {
       onTap: onTap,
       child: Row(
         children: <Widget>[
-          icon,
+          isAwesome ? faIcon : icon,
           SizedBox(
             width: 15,
           ),

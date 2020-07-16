@@ -127,24 +127,28 @@ class MainChatScreen extends StatelessWidget {
                             }
                           }).toList();
 
-                          return ListView.builder(
-                            itemCount: chatrooms.length,
-                            itemBuilder: (context, index) => ChatCard(
-                              latestMessage:
-                                  chatrooms[index]["latestMessage"] == null
-                                      ? "Start chat >>"
-                                      : chatrooms[index]["latestMessage"],
-                              userName: chatrooms[index]["userName"] == null
-                                  ? "Start send message......"
-                                  : chatrooms[index]["userName"],
-                              when: chatrooms[index]["time"] == null
-                                  ? "--:--"
-                                  : chatrooms[index]["time"],
-                              chatRoomId: chatrooms[index]["chatRoomId"],
+                          return Scrollbar(
+                            child: ListView.builder(
+                              itemCount: chatrooms.length,
+                              itemBuilder: (context, index) => ChatCard(
+                                latestMessage:
+                                    chatrooms[index]["latestMessage"] == null
+                                        ? "Start chat >>"
+                                        : chatrooms[index]["latestMessage"],
+                                userName: chatrooms[index]["userName"] == null
+                                    ? "Start send message......"
+                                    : chatrooms[index]["userName"],
+                                when: chatrooms[index]["time"] == null
+                                    ? "--:--"
+                                    : chatrooms[index]["time"],
+                                chatRoomId: chatrooms[index]["chatRoomId"],
+                              ),
                             ),
                           );
                         }
-                        return Text('eiei');
+                        return Material(
+                          type: MaterialType.transparency,
+                        );
                         // return ListView.builder(itemCount: ,itemBuilder: )
                       }),
                 ),

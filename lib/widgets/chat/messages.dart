@@ -33,33 +33,24 @@ class _MessagesState extends State<Messages> {
           if (snapshot.hasData && snapshot.data.documents.length > 0) {
             final chatDocs = snapshot.data.documents;
 
-            return ListView.builder(
+            return Scrollbar(
+              child: ListView.builder(
                 reverse: true,
                 itemCount: chatDocs.length,
                 itemBuilder: (context, index) => MessageCard(
-                      userName: chatDocs[index]['userName'],
-                      message: chatDocs[index]['message'],
-                      isMe: chatDocs[index]["userId"] == widget.currentUserId,
-                      key: ValueKey(
-                        chatDocs[index]["chatId"],
-                      ),
-                    ));
+                  userName: chatDocs[index]['userName'],
+                  message: chatDocs[index]['message'],
+                  isMe: chatDocs[index]["userId"] == widget.currentUserId,
+                  key: ValueKey(
+                    chatDocs[index]["chatId"],
+                  ),
+                ),
+              ),
+            );
           }
           return Material(
             type: MaterialType.transparency,
           );
-          // return ListView(
-          //   children: <Widget>[
-          //     MessageCard(
-          //       isMe: true,
-          //       key: ValueKey('1'),
-          //     ),
-          //     MessageCard(
-          //       isMe: false,
-          //       key: ValueKey('2'),
-          //     ),
-          //   ],
-          // );
         });
   }
 }

@@ -196,25 +196,29 @@ class _MainShopScreenState extends State<MainShopScreen> {
                                     .toList();
 
                                 return renderItem.length != 0
-                                    ? GridView.builder(
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 2,
-                                          crossAxisSpacing: 15,
-                                          mainAxisSpacing: 15,
-                                          childAspectRatio: //0.68
-                                              0.8,
-                                        ),
-                                        itemCount: renderItem.length,
-                                        itemBuilder: (ctx, index) =>
-                                            MainShopItem(
-                                          assetPath: renderItem[index]
-                                              ['itemImagePath'],
-                                          per: renderItem[index]['itemUnit'],
-                                          price: renderItem[index]['itemPrice'],
-                                          title: renderItem[index]['itemName'],
-                                          id: renderItem[index]['itemId'],
-                                          isNetwork: true,
+                                    ? Scrollbar(
+                                        child: GridView.builder(
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2,
+                                            crossAxisSpacing: 15,
+                                            mainAxisSpacing: 15,
+                                            childAspectRatio: //0.68
+                                                0.8,
+                                          ),
+                                          itemCount: renderItem.length,
+                                          itemBuilder: (ctx, index) =>
+                                              MainShopItem(
+                                            assetPath: renderItem[index]
+                                                ['itemImagePath'],
+                                            per: renderItem[index]['itemUnit'],
+                                            price: renderItem[index]
+                                                ['itemPrice'],
+                                            title: renderItem[index]
+                                                ['itemName'],
+                                            id: renderItem[index]['itemId'],
+                                            isNetwork: true,
+                                          ),
                                         ),
                                       )
                                     : Center(
@@ -267,17 +271,19 @@ class _MainShopScreenState extends State<MainShopScreen> {
                               )
                               .toList();
                           return renderItem.length != 0
-                              ? ListView.builder(
-                                  itemCount: renderItem.length,
-                                  itemBuilder: (ctx, index) => ListItem(
-                                    assetPath: renderItem[index]
-                                        ['itemImagePath'],
-                                    per: renderItem[index]['itemUnit'],
-                                    price: renderItem[index]['itemPrice'],
-                                    title: renderItem[index]['itemName'],
-                                    id: renderItem[index]['itemId'],
-                                    shopName: renderItem[index]['shopName'],
-                                    isNetwork: true,
+                              ? Scrollbar(
+                                  child: ListView.builder(
+                                    itemCount: renderItem.length,
+                                    itemBuilder: (ctx, index) => ListItem(
+                                      assetPath: renderItem[index]
+                                          ['itemImagePath'],
+                                      per: renderItem[index]['itemUnit'],
+                                      price: renderItem[index]['itemPrice'],
+                                      title: renderItem[index]['itemName'],
+                                      id: renderItem[index]['itemId'],
+                                      shopName: renderItem[index]['shopName'],
+                                      isNetwork: true,
+                                    ),
                                   ),
                                 )
                               : Center(

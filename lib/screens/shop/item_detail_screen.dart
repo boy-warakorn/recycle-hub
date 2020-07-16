@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../chat/chat_screen.dart';
 import '../../helpers/chat.dart';
@@ -146,58 +147,44 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                         SizedBox(
                           height: 15,
                         ),
-                        RichText(
-                          text: TextSpan(
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: 'Price:',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline1
-                                    .copyWith(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                              ),
-                              TextSpan(
-                                text: ' $price Baht/$per',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline1
-                                    .copyWith(
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                              )
-                            ],
-                          ),
+                        Row(
+                          children: <Widget>[
+                            FaIcon(
+                              FontAwesomeIcons.moneyBill,
+                              color: Colors.black,
+                            ),
+                            Text(
+                              ' : $price Baht/$per',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline1
+                                  .copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                            ),
+                          ],
                         ),
                         SizedBox(
                           height: 15,
                         ),
-                        RichText(
-                          text: TextSpan(
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: 'Seller:',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline1
-                                    .copyWith(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                              ),
-                              TextSpan(
-                                text: ' $shopName',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline1
-                                    .copyWith(
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                              )
-                            ],
-                          ),
+                        Row(
+                          children: <Widget>[
+                            FaIcon(
+                              FontAwesomeIcons.userTie,
+                              color: Colors.black,
+                            ),
+                            Text(
+                              ' : $shopName',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline1
+                                  .copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                            ),
+                          ],
                         ),
                         SizedBox(
                           height: 15,
@@ -209,12 +196,23 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                         SizedBox(
                           height: 5,
                         ),
-                        Text(
-                          'Detail',
-                          style: Theme.of(context).textTheme.headline1.copyWith(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal,
-                              ),
+                        Row(
+                          children: <Widget>[
+                            FaIcon(
+                              FontAwesomeIcons.infoCircle,
+                              color: Colors.black,
+                            ),
+                            Text(
+                              ' Detail',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline1
+                                  .copyWith(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                            ),
+                          ],
                         ),
                         SizedBox(
                           height: 10,
@@ -258,12 +256,23 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                         SizedBox(
                           height: 15,
                         ),
-                        Text(
-                          'Address',
-                          style: Theme.of(context).textTheme.headline1.copyWith(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal,
-                              ),
+                        Row(
+                          children: <Widget>[
+                            FaIcon(
+                              FontAwesomeIcons.solidAddressCard,
+                              color: Colors.black,
+                            ),
+                            Text(
+                              ' Address',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline1
+                                  .copyWith(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                            ),
+                          ],
                         ),
                         SizedBox(
                           height: 5,

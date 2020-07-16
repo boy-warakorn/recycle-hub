@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ButtonHomeBox extends StatelessWidget {
   final Icon icon;
@@ -6,6 +7,8 @@ class ButtonHomeBox extends StatelessWidget {
   final double width;
   final double height;
   final Function onTap;
+  final FaIcon faIcon;
+  final bool isAwesome;
 
   ButtonHomeBox({
     this.icon,
@@ -13,6 +16,8 @@ class ButtonHomeBox extends StatelessWidget {
     this.width,
     this.height,
     this.onTap,
+    this.isAwesome = false,
+    this.faIcon,
   });
 
   @override
@@ -40,7 +45,7 @@ class ButtonHomeBox extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              icon,
+              isAwesome ? faIcon : icon,
               SizedBox(
                 height: 5,
               ),

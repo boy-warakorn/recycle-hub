@@ -80,6 +80,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       color: Colors.white,
                       fontWeight: FontWeight.normal,
                     ),
+                autocorrect: false,
                 decoration: InputDecoration(
                   suffixIcon: IconButton(
                     icon: Icon(

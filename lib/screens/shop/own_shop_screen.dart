@@ -201,26 +201,28 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
                     )
                     .toList();
                 return renderItem.length != 0
-                    ? ListView.builder(
-                        itemCount: renderItem.length + 1,
-                        itemBuilder: (ctx, index) {
-                          if (index == renderItem.length) {
-                            return SizedBox(
-                              height: 100,
-                            );
-                          } else {
-                            return ListItem(
-                              assetPath: renderItem[index]['itemImagePath'],
-                              per: renderItem[index]['itemUnit'],
-                              price: renderItem[index]['itemPrice'],
-                              title: renderItem[index]['itemName'],
-                              id: renderItem[index]['itemId'],
-                              shopName: renderItem[index]['shopName'],
-                              isNetwork: true,
-                              isOwnShop: true,
-                            );
-                          }
-                        })
+                    ? Scrollbar(
+                        child: ListView.builder(
+                            itemCount: renderItem.length + 1,
+                            itemBuilder: (ctx, index) {
+                              if (index == renderItem.length) {
+                                return SizedBox(
+                                  height: 100,
+                                );
+                              } else {
+                                return ListItem(
+                                  assetPath: renderItem[index]['itemImagePath'],
+                                  per: renderItem[index]['itemUnit'],
+                                  price: renderItem[index]['itemPrice'],
+                                  title: renderItem[index]['itemName'],
+                                  id: renderItem[index]['itemId'],
+                                  shopName: renderItem[index]['shopName'],
+                                  isNetwork: true,
+                                  isOwnShop: true,
+                                );
+                              }
+                            }),
+                      )
                     : Center(
                         child: Text(
                           'No results found!',
