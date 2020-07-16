@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 
+import '../chat/chat_screen.dart';
 import '../../helpers/chat.dart';
 import '../../models/user.dart';
 
@@ -39,14 +40,29 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
     }
   }
 
-  createChatHandler(userId, anotherUserId) async {
+  createChatHandler(userId, anotherUserId, context) async {
     setState(() {
       _isLoading = true;
     });
-    await chat.createChatRoom(userId, anotherUserId);
+    await chat.createChatRoom(userId, anotherUserId, context);
+
+    final info =
+        await Firestore.instance.collection("chatrooms").getDocuments();
+    final temp = info.documents.where((element) {
+      if (element["users"][0] == userId &&
+              element["users"][1] == anotherUserId ||
+          element["users"][0] == anotherUserId &&
+              element["users"][1] == userId) {
+        return true;
+      } else {
+        return false;
+      }
+    }).toList();
     setState(() {
       _isLoading = false;
     });
+    Navigator.of(context)
+        .pushNamed(ChatScreen.routeName, arguments: temp[0]["chatRoomId"]);
   }
 
   fetchItemDetail() async {
@@ -273,7 +289,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  createChatHandler(currentUserId, userId);
+                  createChatHandler(currentUserId, userId, context);
                 },
               )
             : null,

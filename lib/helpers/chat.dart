@@ -48,6 +48,7 @@ class ChatService {
   Future createChatRoom(
     String userId,
     String anotherUserId,
+    BuildContext context,
   ) async {
     try {
       if (await checkAlreadyChat(userId, anotherUserId)) {
