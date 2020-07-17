@@ -58,9 +58,11 @@ class _MainShopScreenState extends State<MainShopScreen> {
           : Container(
               child: TextField(
                 onChanged: (text) {
-                  setState(() {
-                    searchText = text;
-                  });
+                  if (mounted) {
+                    setState(() {
+                      searchText = text;
+                    });
+                  }
                 },
                 autofocus: true,
                 decoration: InputDecoration(
@@ -82,12 +84,14 @@ class _MainShopScreenState extends State<MainShopScreen> {
       actions: <Widget>[
         IconButton(
           onPressed: () {
-            setState(() {
-              _isSearch = !_isSearch;
-              if (!_isSearch) {
-                searchText = '';
-              }
-            });
+            if (mounted) {
+              setState(() {
+                _isSearch = !_isSearch;
+                if (!_isSearch) {
+                  searchText = '';
+                }
+              });
+            }
           },
           icon: !_isSearch
               ? Icon(
@@ -102,13 +106,15 @@ class _MainShopScreenState extends State<MainShopScreen> {
         !_isSearch
             ? PopupMenuButton(
                 onSelected: (ViewOptions selectedValue) {
-                  setState(() {
-                    if (selectedValue == ViewOptions.GridView) {
-                      _showGridView = true;
-                    } else if (selectedValue == ViewOptions.ListView) {
-                      _showGridView = false;
-                    }
-                  });
+                  if (mounted) {
+                    setState(() {
+                      if (selectedValue == ViewOptions.GridView) {
+                        _showGridView = true;
+                      } else if (selectedValue == ViewOptions.ListView) {
+                        _showGridView = false;
+                      }
+                    });
+                  }
                 },
                 icon: Icon(
                   Icons.more_vert,

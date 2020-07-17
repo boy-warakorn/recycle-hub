@@ -17,15 +17,19 @@ class _WasteInfoScreenState extends State<WasteInfoScreen> {
   var currentPage = 1;
 
   void nextPage() {
-    setState(() {
-      currentPage++;
-    });
+    if (mounted) {
+      setState(() {
+        currentPage++;
+      });
+    }
   }
 
   void previousPage() {
-    setState(() {
-      currentPage--;
-    });
+    if (mounted) {
+      setState(() {
+        currentPage--;
+      });
+    }
   }
 
   @override

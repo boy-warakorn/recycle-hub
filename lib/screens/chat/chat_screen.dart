@@ -21,15 +21,19 @@ class _ChatScreenState extends State<ChatScreen> {
   var _isLoading = false;
 
   trySendMessage(userId, chatRoomId) async {
-    setState(() {
-      _isLoading = true;
-    });
+    if (mounted) {
+      setState(() {
+        _isLoading = true;
+      });
+    }
+
     await _chat.sendMessage(userId, chatRoomId, _controller.text, _controller);
     _controller.clear();
-
-    setState(() {
-      _isLoading = false;
-    });
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   @override

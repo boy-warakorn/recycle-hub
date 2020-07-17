@@ -31,9 +31,11 @@ class _HomeScreenState extends State<HomeScreen> {
   List<DocumentSnapshot> shownItems;
 
   void onChanged() {
-    setState(() {
-      _show = !_show;
-    });
+    if (mounted) {
+      setState(() {
+        _show = !_show;
+      });
+    }
   }
 
   fetchTwoItems() async {
@@ -41,9 +43,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
     List<DocumentSnapshot> temp = [items.documents[0]];
     temp.add(items.documents[1]);
-    setState(() {
-      shownItems = temp;
-    });
+    if (mounted) {
+      setState(() {
+        shownItems = temp;
+      });
+    }
   }
 
   @override

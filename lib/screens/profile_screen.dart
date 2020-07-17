@@ -25,13 +25,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final user = Provider.of<User>(context);
     var info =
         await Firestore.instance.collection('users').document(user.uid).get();
-    setState(() {
-      firstname = info['firstname'];
-      lastname = info['lastname'];
-      address = info['address'];
-      postalCode = info['postalCode'];
-      phoneNumber = info['phoneNumber'];
-    });
+    if (mounted) {
+      setState(() {
+        firstname = info['firstname'];
+        lastname = info['lastname'];
+        address = info['address'];
+        postalCode = info['postalCode'];
+        phoneNumber = info['phoneNumber'];
+      });
+    }
   }
 
   @override
@@ -39,9 +41,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (!_isInit) {
       fetchUserData();
     }
-    setState(() {
-      _isInit = true;
-    });
+    if (mounted) {
+      setState(() {
+        _isInit = true;
+      });
+    }
 
     super.didChangeDependencies();
   }

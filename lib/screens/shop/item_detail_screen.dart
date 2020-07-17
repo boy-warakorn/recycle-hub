@@ -29,15 +29,20 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
   var shopName;
   var itemId;
   var userId;
+  var userAdd;
   bool isInit = false;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (!isInit) {
+    if (isInit == false) {
       fetchItemDetail();
     } else {
-      isInit = true;
+      if (mounted) {
+        setState(() {
+          isInit = true;
+        });
+      }
     }
   }
 
@@ -72,17 +77,22 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
         .collection("items")
         .document(itemIdSearch)
         .get();
-
-    setState(() {
-      title = info['itemName'];
-      price = info['itemPrice'];
-      per = info['itemUnit'];
-      assetPath = info['itemImagePath'];
-      detail = info['itemDetail'];
-      itemId = info['itemId'];
-      shopName = info['shopName'];
-      userId = info['userId'];
-    });
+    userId = info['userId'];
+    final userAddress =
+        await Firestore.instance.collection('users').document(userId).get();
+    if (mounted) {
+      setState(() {
+        userAdd = userAddress['address'];
+        title = info['itemName'];
+        price = info['itemPrice'];
+        per = info['itemUnit'];
+        assetPath = info['itemImagePath'];
+        detail = info['itemDetail'];
+        itemId = info['itemId'];
+        shopName = info['shopName'];
+        userId = info['userId'];
+      });
+    }
   }
 
   checkAlreadyChat(currentUserId) async {}
@@ -231,31 +241,6 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                         SizedBox(
                           height: 5,
                         ),
-                        Text(
-                          'Location',
-                          style: Theme.of(context).textTheme.headline1.copyWith(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal,
-                              ),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Container(
-                          color: Colors.grey,
-                          width: double.infinity,
-                          height: 200,
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Divider(
-                          thickness: 2,
-                          color: Colors.black,
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
                         Row(
                           children: <Widget>[
                             FaIcon(
@@ -278,7 +263,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                           height: 5,
                         ),
                         Text(
-                          detail,
+                          userAdd,
                           style: Theme.of(context).textTheme.headline3,
                         ),
                       ],

@@ -110,9 +110,11 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
           : Container(
               child: TextField(
                 onChanged: (text) {
-                  setState(() {
-                    searchText = text;
-                  });
+                  if (mounted) {
+                    setState(() {
+                      searchText = text;
+                    });
+                  }
                 },
                 autofocus: true,
                 decoration: InputDecoration(
@@ -134,12 +136,14 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
       actions: <Widget>[
         IconButton(
           onPressed: () {
-            setState(() {
-              _isSearch = !_isSearch;
-              if (!_isSearch) {
-                searchText = "";
-              }
-            });
+            if (mounted) {
+              setState(() {
+                _isSearch = !_isSearch;
+                if (!_isSearch) {
+                  searchText = "";
+                }
+              });
+            }
           },
           icon: !_isSearch
               ? Icon(
