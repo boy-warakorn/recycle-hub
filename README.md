@@ -6,7 +6,7 @@ Recycle hub is a shop application for a person that want to sell/buy recycle was
 
 - Mr. Warakorn Chantranupong
 - Mr. Pongsakorn Chatpram
-- Mrs. Aticha
+- Mrs. Aticha sunthornponsin
 
 # Features
 
