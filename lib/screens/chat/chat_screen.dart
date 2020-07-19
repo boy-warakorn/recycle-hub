@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../helpers/chat.dart';
 
 import '../../models/user.dart';
+
 import '../auth/auth_screen.dart';
 
 import '../../widgets/chat/messages.dart';
@@ -39,8 +41,8 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     final chatroomId = ModalRoute.of(context).settings.arguments;
-
     final user = Provider.of<User>(context);
+
     if (user != null) {
       return Scaffold(
         appBar: AppBar(

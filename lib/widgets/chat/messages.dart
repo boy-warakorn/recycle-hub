@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import './messages_card.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import './messages_card.dart';
 
 class Messages extends StatefulWidget {
   final chatRoomId;

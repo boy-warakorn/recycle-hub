@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-import '../../widgets/shopItems/main_shop_items.dart';
 import '../../widgets/drawer/drawer.dart';
 import '../../widgets/shopItems/list_Item.dart';
 import '../../widgets/button/buttonWithIcon.dart';
@@ -25,7 +24,6 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
   var searchText = '';
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
-  bool _showGridView = false;
   bool _isSearch = false;
 
   void _showAlert(BuildContext context) {
@@ -84,7 +82,6 @@ class _OwnShopScreenState extends State<OwnShopScreen> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
-    final deviceHeight = MediaQuery.of(context).size.height;
 
     AppBar appbar = AppBar(
       titleSpacing: 0,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../screens/chat/chat_screen.dart';
 
 class ChatCard extends StatelessWidget {

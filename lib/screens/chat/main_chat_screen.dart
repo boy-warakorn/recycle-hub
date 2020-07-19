@@ -1,13 +1,11 @@
-import 'package:csc_integrate_project/helpers/auth.dart';
-import 'package:csc_integrate_project/widgets/chat/chat_card.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import '../../widgets/chat/chat_card.dart';
 import '../../models/user.dart';
 import '../auth/auth_screen.dart';
-
-import 'package:flutter/material.dart';
 
 class MainChatScreen extends StatelessWidget {
   static const routeName = '/mainChat';
@@ -100,57 +98,56 @@ class MainChatScreen extends StatelessWidget {
                     top: 25,
                   ),
                   child: StreamBuilder(
-                      stream: Firestore.instance
-                          .collection("chatrooms")
-                          .orderBy("updatedAt", descending: true)
-                          .snapshots(),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return Center(
-                            child: SpinKitCircle(
-                              color: Theme.of(context).primaryColor,
-                            ),
-                          );
-                        }
-                        if (snapshot.hasData &&
-                            snapshot.data.documents.length > 0) {
-                          List allChatroomDocs = snapshot.data.documents;
-                          final userId = user.uid;
-
-                          List chatrooms = allChatroomDocs.where((element) {
-                            if (element["users"][0] == userId ||
-                                element["users"][1] == userId) {
-                              return true;
-                            } else {
-                              return false;
-                            }
-                          }).toList();
-
-                          return Scrollbar(
-                            child: ListView.builder(
-                              itemCount: chatrooms.length,
-                              itemBuilder: (context, index) => ChatCard(
-                                latestMessage:
-                                    chatrooms[index]["latestMessage"] == null
-                                        ? "Start chat >>"
-                                        : chatrooms[index]["latestMessage"],
-                                userName: chatrooms[index]["userName"] == null
-                                    ? "Start send message......"
-                                    : chatrooms[index]["userName"],
-                                when: chatrooms[index]["time"] == null
-                                    ? "--:--"
-                                    : chatrooms[index]["time"],
-                                chatRoomId: chatrooms[index]["chatRoomId"],
-                              ),
-                            ),
-                          );
-                        }
-                        return Material(
-                          type: MaterialType.transparency,
+                    stream: Firestore.instance
+                        .collection("chatrooms")
+                        .orderBy("updatedAt", descending: true)
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(
+                          child: SpinKitCircle(
+                            color: Theme.of(context).primaryColor,
+                          ),
                         );
-                        // return ListView.builder(itemCount: ,itemBuilder: )
-                      }),
+                      }
+                      if (snapshot.hasData &&
+                          snapshot.data.documents.length > 0) {
+                        List allChatroomDocs = snapshot.data.documents;
+                        final userId = user.uid;
+
+                        List chatrooms = allChatroomDocs.where((element) {
+                          if (element["users"][0] == userId ||
+                              element["users"][1] == userId) {
+                            return true;
+                          } else {
+                            return false;
+                          }
+                        }).toList();
+
+                        return Scrollbar(
+                          child: ListView.builder(
+                            itemCount: chatrooms.length,
+                            itemBuilder: (context, index) => ChatCard(
+                              latestMessage:
+                                  chatrooms[index]["latestMessage"] == null
+                                      ? "Start chat >>"
+                                      : chatrooms[index]["latestMessage"],
+                              userName: chatrooms[index]["userName"] == null
+                                  ? "Start send message......"
+                                  : chatrooms[index]["userName"],
+                              when: chatrooms[index]["time"] == null
+                                  ? "--:--"
+                                  : chatrooms[index]["time"],
+                              chatRoomId: chatrooms[index]["chatRoomId"],
+                            ),
+                          ),
+                        );
+                      }
+                      return Material(
+                        type: MaterialType.transparency,
+                      );
+                    },
+                  ),
                 ),
               ),
             )

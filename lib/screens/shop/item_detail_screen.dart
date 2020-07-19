@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../chat/chat_screen.dart';
 import '../../helpers/chat.dart';
 import '../../models/user.dart';
-
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../widgets/button/buttonWithIcon.dart';
 

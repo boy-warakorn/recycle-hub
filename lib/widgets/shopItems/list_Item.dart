@@ -50,26 +50,22 @@ class ListItem extends StatelessWidget {
                 content: Text('Are you sure to delete this item?'),
                 actions: <Widget>[
                   FlatButton(
-                    child: FlatButton(
-                      child: Text(
-                        'DELETE',
-                        style: TextStyle(
-                          color: Theme.of(context).errorColor,
-                        ),
+                    child: Text(
+                      'DELETE',
+                      style: TextStyle(
+                        color: Theme.of(context).errorColor,
                       ),
-                      onPressed: () => Navigator.of(context).pop(true),
                     ),
+                    onPressed: () => Navigator.of(context).pop(true),
                   ),
                   FlatButton(
-                    child: FlatButton(
-                      child: Text(
-                        'CANCEL',
-                        style: TextStyle(
-                          color: Colors.black,
-                        ),
+                    child: Text(
+                      'CANCEL',
+                      style: TextStyle(
+                        color: Colors.black,
                       ),
-                      onPressed: () => Navigator.of(context).pop(false),
                     ),
+                    onPressed: () => Navigator.of(context).pop(false),
                   ),
                 ],
               );

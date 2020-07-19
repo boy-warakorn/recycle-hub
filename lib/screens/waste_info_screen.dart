@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import '../widgets/button/buttonWithIcon.dart';
-
 import 'package:provider/provider.dart';
 
+import '../widgets/button/buttonWithIcon.dart';
 import '../models/user.dart';
 import 'auth/auth_screen.dart';
 
