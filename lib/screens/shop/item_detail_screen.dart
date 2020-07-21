@@ -145,7 +145,8 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                             color: Theme.of(context).primaryColor,
                           ),
                           child: Text(
-                            title,
+                            title.substring(0, 1).toUpperCase() +
+                                title.substring(1, title.length),
                             style:
                                 Theme.of(context).textTheme.headline1.copyWith(
                                       color: Colors.white,

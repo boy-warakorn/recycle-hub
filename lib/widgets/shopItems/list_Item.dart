@@ -79,7 +79,6 @@ class ListItem extends StatelessWidget {
           margin: EdgeInsets.only(
             bottom: 5,
             left: 5,
-            right: 5,
           ),
           child: InkWell(
             onTap: !isOwnShop
@@ -126,8 +125,8 @@ class ListItem extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(
                       top: 10,
-                      left: 13,
-                      right: 13,
+                      left: 10,
+                      right: 10,
                     ),
                     child: Column(
                       mainAxisAlignment: isOwnShop
@@ -139,16 +138,22 @@ class ListItem extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              title,
-                              style: Theme.of(context).textTheme.headline2,
+                              title.substring(0, 1).toUpperCase() +
+                                  title.substring(1, title.length),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline3
+                                  .copyWith(
+                                    fontSize: 18,
+                                  ),
                             ),
                             SizedBox(
                               height: 5,
                             ),
                             Text(
-                              !(shopName.length > 11)
+                              !(shopName.length > 10)
                                   ? 'Shop: $shopName'
-                                  : 'Shop: ${shopName.substring(0, 11)}...',
+                                  : 'Shop: ${shopName.substring(0, 10)}...',
                               style: Theme.of(context)
                                   .textTheme
                                   .headline3
@@ -343,8 +348,12 @@ class ListItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            title,
-                            style: Theme.of(context).textTheme.headline2,
+                            title.substring(0, 1).toUpperCase() +
+                                title.substring(1, title.length),
+                            style:
+                                Theme.of(context).textTheme.headline3.copyWith(
+                                      fontSize: 18,
+                                    ),
                           ),
                           SizedBox(
                             height: 5,

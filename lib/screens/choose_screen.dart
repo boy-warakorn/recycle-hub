@@ -22,6 +22,9 @@ class ChooseScreen extends StatelessWidget {
         ),
         child: Column(
           children: <Widget>[
+            SizedBox(
+              height: 50,
+            ),
             Logo(),
             Container(
               margin: EdgeInsets.only(
@@ -42,13 +45,13 @@ class ChooseScreen extends StatelessWidget {
                 right: 20,
               ),
               child: Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sociis mollis cursus qfend mauris libero massa id.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sociis mollis cursus qfend mauris libero massa id.",
+                "This is a waste dealer application",
                 style: Theme.of(context).textTheme.bodyText1,
                 textAlign: TextAlign.center,
               ),
             ),
             SizedBox(
-              height: 120,
+              height: 200,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
