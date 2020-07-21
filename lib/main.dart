@@ -22,6 +22,7 @@ import 'screens/chat/main_chat_screen.dart';
 import 'screens/splash_screen.dart';
 
 import './helpers/auth.dart';
+import './helpers/custom_route.dart';
 import './models/user.dart';
 
 void main() {
@@ -42,6 +43,12 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         title: 'Recycle Hub',
         theme: ThemeData(
+          pageTransitionsTheme: PageTransitionsTheme(
+            builders: {
+              TargetPlatform.android: CustomPageTransitionBuilder(),
+              TargetPlatform.iOS: CustomPageTransitionBuilder(),
+            },
+          ),
           primaryColor: Color(0xFF655C56),
           appBarTheme: AppBarTheme(
             color: Color(0xFF655C56),
